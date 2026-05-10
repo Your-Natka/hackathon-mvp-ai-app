@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { Message } from "@/types/chat";
+
+export type Message = {
+  role: "user" | "assistant" | "system";
+  content: string;
+};
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const sendMessage = async (text: string) => {
-    const newMessages = [...messages, { role: "user", content: text }];
+  const sendMessage = async (content: string) => {
+    const newMessages: Message[] = [...messages, { role: "user", content }];
 
     setMessages(newMessages);
     setLoading(true);
 
     const res = await fetch("/api/chat", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: newMessages }),
     });
 
