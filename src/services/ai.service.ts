@@ -1,11 +1,14 @@
-import { openai } from "@/lib/openai";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function getAIResponse(messages: any[]) {
-  const res = await openai.chat.completions.create({
+  const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages,
-    temperature: 0.2,
   });
 
-  return res.choices[0].message.content;
+  return response.choices[0].message.content;
 }
