@@ -1,5 +1,5 @@
 "use client";
 
-export function ChatInput() {
+export default function ChatInput() {
   return <div>Chat input</div>;
 }
