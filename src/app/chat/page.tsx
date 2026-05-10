@@ -3,6 +3,7 @@
 import { useChat } from "@/hooks/useChat";
 import ChatWindow from "@/components/chat/ChatWindow";
 import ChatInput from "@/components/chat/ChatInput";
+import type { Message } from "@/hooks/useChat";
 
 export default function ChatPage() {
   const { messages, sendMessage, loading } = useChat();
