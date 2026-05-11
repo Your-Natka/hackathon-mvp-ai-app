@@ -8,9 +8,13 @@ type ChatWindowProps = {
 };
 
 export default function ChatWindow({ messages }: ChatWindowProps) {
+  const visibleMessages = messages.filter(
+    (message) => message.role !== "system",
+  );
+
   return (
     <div className="flex flex-col gap-4">
-      {messages.map((message, index) => (
+      {visibleMessages.map((message, index) => (
         <div
           key={index}
           className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
