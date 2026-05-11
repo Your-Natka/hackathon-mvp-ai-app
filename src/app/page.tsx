@@ -14,24 +14,24 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h1 className="font-bold text-lg">SENTINEL</h1>
+              <h1 className="font-bold text-lg">Вартовий</h1>
 
-              <p className="text-xs text-gray-400">Construction AI</p>
+              <p className="text-xs text-gray-400">Будівництво AI</p>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-            <a href="#">Product</a>
-            <a href="#">Features</a>
-            <a href="#">Use Cases</a>
-            <a href="#">Pricing</a>
+            <a href="#">Продукт</a>
+            <a href="#">Особливості</a>
+            <a href="#">Випадки використання</a>
+            <a href="#">Цінування</a>
           </nav>
 
           <Link
             href="/chat"
             className="bg-violet-600 hover:bg-violet-500 transition px-5 py-2 rounded-xl font-medium"
           >
-            Try Demo
+            Спробуйте демо-версію
           </Link>
         </div>
       </header>
@@ -41,23 +41,24 @@ export default function HomePage() {
         {/* LEFT */}
         <div>
           <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 text-violet-300 px-4 py-2 rounded-full text-sm mb-6">
-            AI FOR CONSTRUCTION
+            AI ДЛЯ БУДІВНИЦТВА
           </div>
 
           <h2 className="text-5xl lg:text-6xl font-bold leading-tight">
-            Your AI Assistant
+            Ваш AI-помічник
             <br />
-            for Construction
+            для будівництва
             <br />
-            Documents &
+            документів &
             <br />
-            Regulations
+            Регламентів
           </h2>
 
           <p className="text-gray-400 text-lg mt-8 max-w-xl">
-            Instantly search construction standards, DBN regulations, company
-            policies, safety instructions, and project documents using
-            AI-powered enterprise search.
+            ДЛЯ БУДІВНИЦТВА - це AI-помічник, який допомагає будівельним
+            компаніям швидко знаходити відповіді на основі їхніх документів та
+            регламентів. Замість перегляду сотень сторінок, просто запитайте і
+            отримайте точну відповідь, засновану на ваших власних даних.
           </p>
 
           <div className="flex flex-wrap gap-4 mt-10">
@@ -65,11 +66,11 @@ export default function HomePage() {
               href="/chat"
               className="bg-violet-600 hover:bg-violet-500 transition px-7 py-4 rounded-2xl font-semibold"
             >
-              Try Demo
+              Спробуйте демо-версію
             </Link>
 
             <button className="border border-white/10 hover:border-white/20 px-7 py-4 rounded-2xl">
-              Learn More
+              Дізнатися більше
             </button>
           </div>
 
@@ -80,11 +81,11 @@ export default function HomePage() {
                 🔎
               </div>
 
-              <h3 className="font-semibold mb-2">Smart Search</h3>
+              <h3 className="font-semibold mb-2">Розумний пошук</h3>
 
               <p className="text-sm text-gray-400">
-                Find answers across thousands of construction documents
-                instantly.
+                Знаходьте відповіді на тисячі питань у будівельній документації
+                миттєво.
               </p>
             </div>
 
@@ -93,10 +94,11 @@ export default function HomePage() {
                 🛡
               </div>
 
-              <h3 className="font-semibold mb-2">Accurate Answers</h3>
+              <h3 className="font-semibold mb-2">Точні відповіді</h3>
 
               <p className="text-sm text-gray-400">
-                AI responses grounded in trusted company and regulatory sources.
+                Відповіді AI, засновані на надійних джерелах компанії та
+                регулятивних актах.
               </p>
             </div>
 
@@ -105,11 +107,11 @@ export default function HomePage() {
                 🏗
               </div>
 
-              <h3 className="font-semibold mb-2">Built for Construction</h3>
+              <h3 className="font-semibold mb-2">Створено для будівництва</h3>
 
               <p className="text-sm text-gray-400">
-                Optimized for DBN standards, safety rules, and internal
-                documents.
+                Оптимізовано для стандартів DBN, правил безпеки та внутрішніх
+                документів.
               </p>
             </div>
           </div>
@@ -122,15 +124,15 @@ export default function HomePage() {
           <div className="relative bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
-                <h3 className="font-semibold">AI Assistant</h3>
+                <h3 className="font-semibold">AI Помічник</h3>
 
                 <p className="text-sm text-gray-400">
-                  Construction Knowledge Chat
+                  Чат знань про будівництво
                 </p>
               </div>
 
               <div className="bg-green-500/10 text-green-400 px-3 py-1 rounded-full text-sm">
-                Online
+                Онлайн
               </div>
             </div>
 
@@ -139,23 +141,23 @@ export default function HomePage() {
               {/* USER */}
               <div className="flex justify-end">
                 <div className="bg-violet-600 px-5 py-4 rounded-2xl max-w-md">
-                  What are the safety requirements for working at height?
+                  Які вимоги безпеки є для роботи на висоті?
                 </div>
               </div>
 
               {/* AI */}
               <div className="flex justify-start">
                 <div className="bg-white/10 border border-white/10 px-5 py-4 rounded-2xl max-w-md">
-                  According to DBN standards, workers above 1.3m height must
-                  use:
+                  Згідно зі стандартами DBN, працівники зростом вище 1,3 м
+                  повинні використовувати:
                   <ul className="list-disc ml-5 mt-3 text-sm text-gray-300 space-y-1">
-                    <li>Personal fall protection</li>
-                    <li>Safety harness</li>
-                    <li>Guardrails</li>
-                    <li>Certified equipment</li>
+                    <li>Індивідуальний захист від падіння</li>
+                    <li>Ремень безпеки</li>
+                    <li>Огородження</li>
+                    <li>Сертифіковане обладнання</li>
                   </ul>
                   <div className="mt-4 text-xs text-violet-300">
-                    Source: DBN V.2.2-40:2018
+                    Джерело: DBN V.2.2-40:2018
                   </div>
                 </div>
               </div>
@@ -164,12 +166,12 @@ export default function HomePage() {
             {/* INPUT */}
             <div className="mt-6 flex items-center gap-3">
               <input
-                placeholder="Ask about construction documents..."
+                placeholder="Питання про будівельні документи..."
                 className="flex-1 bg-black/30 border border-white/10 rounded-2xl px-5 py-4 outline-none"
               />
 
               <button className="bg-violet-600 hover:bg-violet-500 transition px-6 py-4 rounded-2xl">
-                Send
+                Надіслати
               </button>
             </div>
           </div>
