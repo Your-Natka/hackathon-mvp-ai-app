@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#07152F] text-white overflow-hidden">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#07152F]/70 backdrop-blur-xl">
+      <header className="fixed top-0 left-0 w-full z-50 bg-[#07152F]/80 backdrop-blur-2xl">
         <div className="max-w-[1440px] mx-auto h-24 px-8 flex items-center justify-between">
           {/* LOGO */}
           <div className="flex items-center gap-4">
@@ -46,12 +46,12 @@ export default function HomePage() {
           <div className="flex items-center gap-4">
             <Link
               href="/demo"
-              className="bg-[#5F63FF] hover:bg-[#5257FF] px-5 py-3 rounded-xl font-medium transition"
+              className="bg-[#5F63FF] hover:bg-[#5257FF] px-5 py-3 font-medium transition"
             >
               Демо-версія
             </Link>
 
-            <button className="border border-white/20 px-5 py-3 rounded-xl hover:bg-white/10 transition">
+            <button className="border border-white/20 px-5 py-3  hover:bg-white/10 transition">
               Вхід
             </button>
           </div>
@@ -94,12 +94,12 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-5 mt-50">
                 <Link
                   href="/chat"
-                  className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:scale-[1.02] transition"
+                  className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white px-8 py-4 font-semibold shadow-2xl hover:scale-[1.02] transition"
                 >
                   Спробувати AI
                 </Link>
 
-                <button className="border border-white/20 bg-white/10 backdrop-blur-xl px-8 py-4 rounded-2xl hover:bg-white/20 transition">
+                <button className="border border-white/20 bg-white/10 backdrop-blur-xl px-8 py-4 hover:bg-white/20 transition">
                   Дізнатися більше
                 </button>
               </div>
@@ -123,7 +123,7 @@ export default function HomePage() {
             {/* RIGHT FEATURES */}
             <div className="flex flex-col gap-4 w-full max-w-[340px] ml-auto">
               {/* CARD 1 */}
-              <div className="bg-white rounded-2xl p-5 shadow-2xl text-[#0B1736]">
+              <div className="bg-white  p-5 shadow-2xl text-[#0B1736]">
                 <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
                   <Search className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
               </div>
 
               {/* CARD 2 */}
-              <div className="bg-white rounded-2xl p-5 shadow-2xl text-[#0B1736]">
+              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
                 <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
                   <ShieldCheck className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
               </div>
 
               {/* CARD 3 */}
-              <div className="bg-white rounded-2xl p-5 shadow-2xl text-[#0B1736]">
+              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
                 <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
                   <FileText className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
@@ -162,7 +162,7 @@ export default function HomePage() {
               </div>
 
               {/* CARD 4 */}
-              <div className="bg-white rounded-2xl p-5 shadow-2xl text-[#0B1736]">
+              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
                 <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
                   <Zap className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
