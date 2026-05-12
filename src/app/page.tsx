@@ -1,178 +1,179 @@
-// src/app/page.tsx
-
+import Image from "next/image";
 import Link from "next/link";
+import { Search, ShieldCheck, FileText, Zap } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0B1120] text-white">
-      {/* NAVBAR */}
-      <header className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center font-bold">
-              S
-            </div>
+    <main className="min-h-screen bg-[#07152F] text-white overflow-hidden">
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#07152F]/95 backdrop-blur-xl">
+        <div className="max-w-[1440px] mx-auto h-24 px-8 flex items-center justify-between">
+          {/* LOGO */}
+          <div className="flex items-center gap-4">
+            <Image
+              src="/images/sentinel_logo.png"
+              alt="Sentinel AI"
+              width={52}
+              height={52}
+              className="object-contain"
+            />
 
             <div>
-              <h1 className="font-bold text-lg">Вартовий</h1>
+              <h1 className="text-xl font-bold tracking-wide">SENTINEL AI</h1>
 
-              <p className="text-xs text-gray-400">Будівництво AI</p>
+              <p className="text-[#8CA0C7] text-xs">
+                Construction Knowledge System
+              </p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm text-gray-300">
-            <a href="#">Продукт</a>
-            <a href="#">Особливості</a>
-            <a href="#">Випадки використання</a>
-            <a href="#">Цінування</a>
+          {/* MENU */}
+          <nav className="hidden xl:flex items-center gap-10 text-[15px] font-medium text-[#D5DDF2]">
+            <a href="#" className="hover:text-white transition">
+              Про продукт
+            </a>
+
+            <a href="#" className="hover:text-white transition">
+              AI-Можливості
+            </a>
+
+            <a href="#" className="hover:text-white transition">
+              Контакти
+            </a>
           </nav>
 
-          <Link
-            href="/chat"
-            className="bg-violet-600 hover:bg-violet-500 transition px-5 py-2 rounded-xl font-medium"
-          >
-            Спробуйте демо-версію
-          </Link>
+          {/* ACTIONS */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/demo"
+              className="bg-[#5F63FF] hover:bg-[#5257FF] px-5 py-3 rounded-xl font-medium transition"
+            >
+              Демо-версія
+            </Link>
+
+            <button className="border border-[#32476F] px-5 py-3 rounded-xl hover:bg-white/10 transition">
+              Вхід
+            </button>
+          </div>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT */}
-        <div>
-          <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 text-violet-300 px-4 py-2 rounded-full text-sm mb-6">
-            AI ДЛЯ БУДІВНИЦТВА
-          </div>
-
-          <h2 className="text-5xl lg:text-6xl font-bold leading-tight">
-            Ваш AI-помічник
-            <br />
-            для будівництва
-            <br />
-            документів &
-            <br />
-            Регламентів
-          </h2>
-
-          <p className="text-gray-400 text-lg mt-8 max-w-xl">
-            ДЛЯ БУДІВНИЦТВА - це AI-помічник, який допомагає будівельним
-            компаніям швидко знаходити відповіді на основі їхніх документів та
-            регламентів. Замість перегляду сотень сторінок, просто запитайте і
-            отримайте точну відповідь, засновану на ваших власних даних.
-          </p>
-
-          <div className="flex flex-wrap gap-4 mt-10">
-            <Link
-              href="/chat"
-              className="bg-violet-600 hover:bg-violet-500 transition px-7 py-4 rounded-2xl font-semibold"
-            >
-              Спробуйте демо-версію
-            </Link>
-
-            <button className="border border-white/10 hover:border-white/20 px-7 py-4 rounded-2xl">
-              Дізнатися більше
-            </button>
-          </div>
-
-          {/* FEATURES */}
-          <div className="grid md:grid-cols-3 gap-4 mt-16">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 mb-4">
-                🔎
-              </div>
-
-              <h3 className="font-semibold mb-2">Розумний пошук</h3>
-
-              <p className="text-sm text-gray-400">
-                Знаходьте відповіді на тисячі питань у будівельній документації
-                миттєво.
-              </p>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 mb-4">
-                🛡
-              </div>
-
-              <h3 className="font-semibold mb-2">Точні відповіді</h3>
-
-              <p className="text-sm text-gray-400">
-                Відповіді AI, засновані на надійних джерелах компанії та
-                регулятивних актах.
-              </p>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 mb-4">
-                🏗
-              </div>
-
-              <h3 className="font-semibold mb-2">Створено для будівництва</h3>
-
-              <p className="text-sm text-gray-400">
-                Оптимізовано для стандартів DBN, правил безпеки та внутрішніх
-                документів.
-              </p>
-            </div>
-          </div>
+      <section className="relative min-h-screen pt-32">
+        {/* BG IMAGE */}
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src="/images/sentinel_2026@2.jpg"
+            alt="Construction"
+            fill
+            priority
+            className="object-cover"
+          />
         </div>
 
-        {/* RIGHT */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-violet-600 blur-[120px] opacity-20 rounded-full" />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07152F] via-[#07152F]/95 to-[#07152F]/80" />
 
-          <div className="relative bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div>
-                <h3 className="font-semibold">AI Помічник</h3>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-16">
+          <div className="grid xl:grid-cols-[1fr_420px] gap-16 items-start">
+            {/* LEFT CONTENT */}
+            <div className="max-w-3xl">
+              
 
-                <p className="text-sm text-gray-400">
-                  Чат знань про будівництво
+              {/* TITLE */}
+              <h2 className="mt-8 text-6xl leading-[1.1] font-bold">
+                Інтелектуальний помічник для інженерів та проєктувальників
+              </h2>
+
+              {/* DESC */}
+              <p className="mt-8 text-[#B8C5E2] text-xl leading-relaxed max-w-2xl">
+                Миттєвий доступ до консультацій по будівельним нормам, DBN,
+                стандартам та внутрішнім регламентам компанії.
+              </p>
+
+              {/* BUTTONS */}
+              <div className="flex flex-wrap gap-5 mt-10">
+                <Link
+                  href="/chat"
+                  className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:scale-[1.02] transition"
+                >
+                  Спробувати AI
+                </Link>
+
+                <button className="border border-[#41557E] px-8 py-4 rounded-2xl hover:bg-white/10 transition">
+                  Дізнатися більше
+                </button>
+              </div>
+
+              {/* TRUST */}
+              <div className="mt-20">
+                <p className="text-[#8FA2C7] text-sm tracking-[0.25em] uppercase">
+                  Нам довіряють будівельні компанії
+                </p>
+
+                <div className="flex flex-wrap gap-12 items-center mt-8 text-[#A9B5CF] font-bold text-2xl">
+                  <span>SKANSKA</span>
+                  <span>VINCI</span>
+                  <span>AECOM</span>
+                  <span>STRABAG</span>
+                  <span>Turner</span>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT FEATURES */}
+            <div className="flex flex-col gap-4 max-w-[360px] ml-auto">
+              {/* CARD 1 */}
+              <div className="bg-white rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.18)] text-[#0B1736]">
+                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
+                  <Search className="w-5 h-5 text-[#4C6FFF]" />
+                </div>
+
+                <h3 className="font-bold text-lg mb-2">Розумний пошук</h3>
+
+                <p className="text-[#667085] text-sm leading-relaxed">
+                  Швидкий пошук норм, правил та вимог у документах.
                 </p>
               </div>
 
-              <div className="bg-green-500/10 text-green-400 px-3 py-1 rounded-full text-sm">
-                Онлайн
-              </div>
-            </div>
-
-            {/* CHAT */}
-            <div className="space-y-5 mt-6">
-              {/* USER */}
-              <div className="flex justify-end">
-                <div className="bg-violet-600 px-5 py-4 rounded-2xl max-w-md">
-                  Які вимоги безпеки є для роботи на висоті?
+              {/* CARD 2 */}
+              <div className="bg-white rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.18)] text-[#0B1736]">
+                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
+                  <ShieldCheck className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
+
+                <h3 className="font-bold text-lg mb-2">Точні відповіді</h3>
+
+                <p className="text-[#667085] text-sm leading-relaxed">
+                  AI аналізує DBN та внутрішні регламенти.
+                </p>
               </div>
 
-              {/* AI */}
-              <div className="flex justify-start">
-                <div className="bg-white/10 border border-white/10 px-5 py-4 rounded-2xl max-w-md">
-                  Згідно зі стандартами DBN, працівники зростом вище 1,3 м
-                  повинні використовувати:
-                  <ul className="list-disc ml-5 mt-3 text-sm text-gray-300 space-y-1">
-                    <li>Індивідуальний захист від падіння</li>
-                    <li>Ремень безпеки</li>
-                    <li>Огородження</li>
-                    <li>Сертифіковане обладнання</li>
-                  </ul>
-                  <div className="mt-4 text-xs text-violet-300">
-                    Джерело: DBN V.2.2-40:2018
-                  </div>
+              {/* CARD 3 */}
+              <div className="bg-white rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.18)] text-[#0B1736]">
+                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
+                  <FileText className="w-5 h-5 text-[#4C6FFF]" />
                 </div>
+
+                <h3 className="font-bold text-lg mb-2">Документи компанії</h3>
+
+                <p className="text-[#667085] text-sm leading-relaxed">
+                  Єдиний центр інструкцій та документації.
+                </p>
               </div>
-            </div>
 
-            {/* INPUT */}
-            <div className="mt-6 flex items-center gap-3">
-              <input
-                placeholder="Питання про будівельні документи..."
-                className="flex-1 bg-black/30 border border-white/10 rounded-2xl px-5 py-4 outline-none"
-              />
+              {/* CARD 4 */}
+              <div className="bg-white rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.18)] text-[#0B1736]">
+                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
+                  <Zap className="w-5 h-5 text-[#4C6FFF]" />
+                </div>
 
-              <button className="bg-violet-600 hover:bg-violet-500 transition px-6 py-4 rounded-2xl">
-                Надіслати
-              </button>
+                <h3 className="font-bold text-lg mb-2">Економія часу</h3>
+
+                <p className="text-[#667085] text-sm leading-relaxed">
+                  Автоматизація рутинних перевірок та пошуку.
+                </p>
+              </div>
             </div>
           </div>
         </div>
