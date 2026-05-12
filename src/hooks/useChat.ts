@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
 export type Message = {
@@ -16,7 +18,7 @@ export function useChat() {
     loadMessages();
   }, []);
 
-  async function loadMessages() {
+  const loadMessages = async () => {
     try {
       if (window.electronAPI) {
         const saved = await window.electronAPI.loadData();
@@ -28,12 +30,12 @@ export function useChat() {
     } catch (err) {
       console.error("Load error:", err);
     }
-  }
+  };
 
   // =========================
   // SAVE MESSAGES
   // =========================
-  async function saveMessages(updated: Message[]) {
+  const saveMessages = async (updated: Message[]) => {
     try {
       setMessages(updated);
 
@@ -43,7 +45,7 @@ export function useChat() {
     } catch (err) {
       console.error("Save error:", err);
     }
-  }
+  };
 
   // =========================
   // SEND MESSAGE
