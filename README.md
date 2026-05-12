@@ -34,3 +34,49 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+tree
+.
+├── AGENTS.md
+├── CLAUDE.md
+├── README.md
+├── components.json
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── profile.txt
+├── public
+│ └── images
+│ ├── hero.jpg
+│ └── image_logo.png
+├── src
+│ ├── app
+│ │ ├── api
+│ │ ├── chat
+│ │ ├── dashboard
+│ │ ├── demo
+│ │ ├── folder
+│ │ ├── globals.css
+│ │ ├── layout.tsx
+│ │ └── page.tsx
+│ ├── components
+│ │ ├── chat
+│ │ └── layout
+│ ├── hooks
+│ │ └── useChat.ts
+│ ├── lib
+│ │ ├── docs.ts
+│ │ ├── openai.ts
+│ │ ├── search.ts
+│ │ └── utils.ts
+│ ├── services
+│ │ └── ai.service.ts
+│ ├── types
+│ │ └── chat.ts
+│ └── utils
+│ ├── helpers.ts
+│ └── prompts.ts
+└── tsconfig.json
