@@ -14,9 +14,6 @@ export function useChat() {
   // =========================
   // LOAD SAVED MESSAGES
   // =========================
-  useEffect(() => {
-    loadMessages();
-  }, []);
 
   const loadMessages = async () => {
     try {
@@ -31,6 +28,10 @@ export function useChat() {
       console.error("Load error:", err);
     }
   };
+
+  useEffect(() => {
+    loadMessages();
+  }, []);
 
   // =========================
   // SAVE MESSAGES
