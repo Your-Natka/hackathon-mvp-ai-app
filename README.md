@@ -48,6 +48,9 @@ tree
 ├── package.json
 ├── postcss.config.mjs
 ├── profile.txt
+├── electron
+│ └── main.js
+│ └── prelosd.js
 ├── public
 │ └── images
 │ ├── hero.jpg
@@ -80,3 +83,5 @@ tree
 │ ├── helpers.ts
 │ └── prompts.ts
 └── tsconfig.json
+
+Запускається командою npm run electron-dev
