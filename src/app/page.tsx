@@ -61,9 +61,9 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative min-h-screen pt-32">
         {/* BG IMAGE */}
-        <div className="absolute inset-0 opacity-25">
+        <div className="absolute inset-0 opacity-45">
           <Image
-            src="/images/sentinel_2026@2.jpg"
+            src="/images/sentinel_2026.jpg"
             alt="Construction"
             fill
             priority
@@ -78,8 +78,6 @@ export default function HomePage() {
           <div className="grid xl:grid-cols-[1fr_420px] gap-16 items-start">
             {/* LEFT CONTENT */}
             <div className="max-w-3xl">
-              
-
               {/* TITLE */}
               <h2 className="mt-8 text-6xl leading-[1.1] font-bold">
                 Інтелектуальний помічник для інженерів та проєктувальників
