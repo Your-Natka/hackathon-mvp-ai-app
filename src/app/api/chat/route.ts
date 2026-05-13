@@ -1,11 +1,16 @@
 import OpenAI from "openai";
 
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+const { data, error } = await supabaseServer.from("documents").select("*");
+
+console.log("TEST DATA:", data);
+console.log("TEST ERROR:", error);
 
 export async function POST(req: Request) {
   try {
@@ -25,7 +30,7 @@ export async function POST(req: Request) {
     // VECTOR SEARCH
     // =========================
 
-    const { data: docs, error } = await supabase.rpc("match_documents", {
+    const { data: docs, error } = await supabaseServer.rpc("match_documents", {
       query_embedding: embedding,
       match_threshold: 0.5,
       match_count: 5,

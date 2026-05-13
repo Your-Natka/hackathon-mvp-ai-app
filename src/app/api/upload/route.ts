@@ -1,7 +1,7 @@
 import { parsePDF } from "@/lib/pdf";
 import { splitText } from "@/lib/chunk";
 import { createEmbedding } from "@/lib/embeddings";
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
 
@@ -45,7 +45,9 @@ export async function POST(req: Request) {
       const cleanRows = rows.filter(Boolean);
 
       if (cleanRows.length > 0) {
-        const { error } = await supabase.from("documents").insert(cleanRows);
+        const { error } = await supabaseServer
+          .from("documents")
+          .insert(cleanRows);
 
         if (error) {
           console.error("SUPABASE INSERT ERROR:", error);

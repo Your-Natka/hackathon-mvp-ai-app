@@ -1,10 +1,10 @@
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 
 export async function searchDocs(query: string) {
   const embedding = await createEmbedding(query);
 
-  const { data, error } = await supabase.rpc("match_documents", {
+  const { data, error } = await supabaseServer.rpc("match_documents", {
     query_embedding: embedding,
     match_threshold: 0.7,
     match_count: 5,
