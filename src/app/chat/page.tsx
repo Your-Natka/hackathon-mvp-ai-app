@@ -1,30 +1,63 @@
 "use client";
 
-import { useChat } from "@/hooks/useChat";
-import ChatWindow from "@/components/chat/ChatWindow";
-import ChatInput from "@/components/chat/ChatInput";
-import type { Message } from "@/hooks/useChat";
+import { useState } from "react";
 
 export default function ChatPage() {
-  const { messages, sendMessage, loading } = useChat();
+  const [message, setMessage] = useState("");
+  const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!message) return;
+
+    setLoading(true);
+    setResponse("");
+
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+
+    const reader = res.body?.getReader();
+    const decoder = new TextDecoder();
+
+    let result = "";
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value);
+      result += chunk;
+      setResponse((prev) => prev + chunk);
+    }
+
+    setLoading(false);
+  };
 
   return (
-    <main className="flex flex-col h-screen bg-black text-white">
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className="w-80 border-r border-white/10 p-4">
-          <h2 className="text-xl font-bold">Chats</h2>
-        </aside>
+    <div className="p-10 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">AI Chat</h1>
 
-        {/* Chat */}
-        <section className="flex flex-1 flex-col">
-          <div className="flex-1 overflow-y-auto p-6">
-            <ChatWindow messages={messages} />
-          </div>
+      <textarea
+        className="w-full border p-3 rounded"
+        rows={4}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Напиши питання..."
+      />
 
-          <ChatInput onSend={sendMessage} loading={loading} />
-        </section>
-      </div>
-    </main>
+      <button
+        onClick={sendMessage}
+        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        {loading ? "Думає..." : "Надіслати"}
+      </button>
+
+      <div className="mt-6 whitespace-pre-wrap border-t pt-4">{response}</div>
+    </div>
   );
 }

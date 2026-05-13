@@ -6,16 +6,16 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#07152F] text-white overflow-hidden">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-[#07152F]/80 backdrop-blur-2xl">
+      <header className="fixed top-0 left-0 w-full z-50 bg-[#07152F]/90 backdrop-blur-2xl border-b border-white/10">
         <div className="max-w-[1440px] mx-auto h-24 px-8 flex items-center justify-between">
           {/* LOGO */}
           <div className="flex items-center gap-4">
             <Image
               src="/images/image_logo.png"
               alt="Sentinel AI"
-              width={52}
-              height={52}
-              className="object-contain"
+              width={54}
+              height={54}
+              style={{ width: "54px", height: "54px" }}
             />
 
             <div>
@@ -46,12 +46,12 @@ export default function HomePage() {
           <div className="flex items-center gap-4">
             <Link
               href="/demo"
-              className="bg-[#5F63FF] hover:bg-[#5257FF] px-5 py-3 font-medium transition"
+              className="bg-[#5F63FF] hover:bg-[#5257FF] px-5 py-3 rounded-xl font-medium transition"
             >
               Демо-версія
             </Link>
 
-            <button className="border border-white/20 px-5 py-3  hover:bg-white/10 transition">
+            <button className="border border-white/20 px-5 py-3 rounded-xl hover:bg-white/10 transition">
               Вхід
             </button>
           </div>
@@ -59,7 +59,7 @@ export default function HomePage() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative pt-28 pb-16">
         {/* BACKGROUND IMAGE */}
         <div className="absolute inset-0">
           <Image
@@ -71,17 +71,23 @@ export default function HomePage() {
           />
         </div>
 
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/35" />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07152F]/95 via-[#07152F]/75 to-[#07152F]/40" />
 
         {/* CONTENT */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-8 pt-28">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-8">
           <div className="grid xl:grid-cols-[1fr_360px] gap-12 items-start">
             {/* LEFT SIDE */}
-            <div className="max-w-3xl">
+            <div className="max-w-3xl pt-16">
+              {/* BADGE */}
+
               {/* TITLE */}
-              <h2 className="text-5xl xl:text-6xl leading-[1.08] font-bold max-w-4xl">
-                Інтелектуальний помічник для інженерів та проєктувальників
+              <h2 className="mt-8 text-5xl xl:text-6xl leading-[1.08] font-bold max-w-4xl">
+                Інтелектуальний помічник
+                <br />
+                для інженерів та
+                <br />
+                проєктувальників
               </h2>
 
               {/* DESCRIPTION */}
@@ -94,18 +100,18 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-5 mt-50">
                 <Link
                   href="/chat"
-                  className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white px-8 py-4 font-semibold shadow-2xl hover:scale-[1.02] transition"
+                  className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:scale-[1.02] transition"
                 >
                   Спробувати AI
                 </Link>
 
-                <button className="border border-white/20 bg-white/10 backdrop-blur-xl px-8 py-4 hover:bg-white/20 transition">
+                <button className="border border-white/20 bg-white/10 backdrop-blur-xl px-8 py-4 rounded-2xl hover:bg-white/20 transition">
                   Дізнатися більше
                 </button>
               </div>
 
               {/* TRUST */}
-              <div className="mt-20">
+              <div className="mt-24">
                 <p className="text-[#C0CAE0] text-sm tracking-[0.22em] uppercase">
                   Нам довіряють будівельні компанії
                 </p>
@@ -121,14 +127,14 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT FEATURES */}
-            <div className="flex flex-col gap-4 w-full max-w-[340px] ml-auto">
+            <div className="flex flex-col gap-5 w-full max-w-[340px] ml-auto pt-10">
               {/* CARD 1 */}
-              <div className="bg-white  p-5 shadow-2xl text-[#0B1736]">
-                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
-                  <Search className="w-5 h-5 text-[#4C6FFF]" />
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] text-[#0B1736] border border-white/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#EEF2FF] flex items-center justify-center mb-5">
+                  <Search className="w-6 h-6 text-[#4C6FFF]" />
                 </div>
 
-                <h3 className="font-bold text-lg mb-2">Розумний пошук</h3>
+                <h3 className="font-bold text-lg mb-3">Розумний пошук</h3>
 
                 <p className="text-[#667085] text-sm leading-relaxed">
                   Швидкий пошук норм, правил та вимог у документах.
@@ -136,12 +142,12 @@ export default function HomePage() {
               </div>
 
               {/* CARD 2 */}
-              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
-                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
-                  <ShieldCheck className="w-5 h-5 text-[#4C6FFF]" />
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] text-[#0B1736] border border-white/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#EEF2FF] flex items-center justify-center mb-5">
+                  <ShieldCheck className="w-6 h-6 text-[#4C6FFF]" />
                 </div>
 
-                <h3 className="font-bold text-lg mb-2">Точні відповіді</h3>
+                <h3 className="font-bold text-lg mb-3">Точні відповіді</h3>
 
                 <p className="text-[#667085] text-sm leading-relaxed">
                   AI аналізує DBN та внутрішні регламенти.
@@ -149,12 +155,12 @@ export default function HomePage() {
               </div>
 
               {/* CARD 3 */}
-              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
-                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
-                  <FileText className="w-5 h-5 text-[#4C6FFF]" />
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] text-[#0B1736] border border-white/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#EEF2FF] flex items-center justify-center mb-5">
+                  <FileText className="w-6 h-6 text-[#4C6FFF]" />
                 </div>
 
-                <h3 className="font-bold text-lg mb-2">Документи компанії</h3>
+                <h3 className="font-bold text-lg mb-3">Документи компанії</h3>
 
                 <p className="text-[#667085] text-sm leading-relaxed">
                   Єдиний центр інструкцій та документації.
@@ -162,12 +168,12 @@ export default function HomePage() {
               </div>
 
               {/* CARD 4 */}
-              <div className="bg-white p-5 shadow-2xl text-[#0B1736]">
-                <div className="w-12 h-12 rounded-xl bg-[#EEF2FF] flex items-center justify-center mb-4">
-                  <Zap className="w-5 h-5 text-[#4C6FFF]" />
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] text-[#0B1736] border border-white/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#EEF2FF] flex items-center justify-center mb-5">
+                  <Zap className="w-6 h-6 text-[#4C6FFF]" />
                 </div>
 
-                <h3 className="font-bold text-lg mb-2">Економія часу</h3>
+                <h3 className="font-bold text-lg mb-3">Економія часу</h3>
 
                 <p className="text-[#667085] text-sm leading-relaxed">
                   Автоматизація рутинних перевірок та пошуку.
