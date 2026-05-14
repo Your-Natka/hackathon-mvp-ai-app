@@ -1,18 +1,22 @@
 import PDFParser from "pdf2json";
 
-export async function parsePDF(buffer: Buffer) {
+export async function parsePDF(buffer: Buffer): Promise<string> {
   return new Promise((resolve, reject) => {
-    const pdfParser = new PDFParser();
+    const parser = new PDFParser();
 
-    pdfParser.on("pdfParser_dataReady", (pdfData) => {
-      const text = pdfParser.getRawTextContent();
-      resolve(text);
+    parser.on("pdfParser_dataReady", (data) => {
+      try {
+        const text = parser.getRawTextContent();
+        resolve(text || "");
+      } catch (e) {
+        reject(e);
+      }
     });
 
-    pdfParser.on("pdfParser_dataError", (err) => {
+    parser.on("pdfParser_dataError", (err) => {
       reject(err);
     });
 
-    pdfParser.parseBuffer(buffer);
+    parser.parseBuffer(buffer);
   });
 }

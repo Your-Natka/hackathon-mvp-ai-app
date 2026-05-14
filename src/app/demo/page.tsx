@@ -46,6 +46,7 @@ export default function DemoPage() {
 
       setAnswer(data.answer || "Немає відповіді");
       setSources(data.sources || []);
+      setQuestion("");
     } catch (error) {
       console.error(error);
 
@@ -393,7 +394,7 @@ export default function DemoPage() {
                   >
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-medium text-[#4C6FFF] bg-[#EEF2FF] px-3 py-1 rounded-full">
-                        SOURCE {index + 1}
+                        Джерело {index + 1}
                       </span>
 
                       <span className="text-xs text-[#98A2B3]">DBN / PDF</span>

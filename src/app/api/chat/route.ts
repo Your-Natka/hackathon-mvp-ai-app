@@ -1,5 +1,5 @@
 import { openai } from "@/lib/openai";
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 
 export async function POST(req: Request) {
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     // 2. SUPABASE SEARCH (SAFE)
     // ======================
     if (embedding.length) {
-      const { data, error } = await supabase.rpc("match_documents", {
+      const { data, error } = await supabaseServer.rpc("match_documents", {
         query_embedding: embedding,
         match_threshold: 0.6,
         match_count: 5,
@@ -34,6 +34,8 @@ export async function POST(req: Request) {
 
       if (!error) {
         docs = data || [];
+
+        console.log("FOUND DOCS:", docs.length);
       } else {
         console.log("SUPABASE ERROR:", error);
       }

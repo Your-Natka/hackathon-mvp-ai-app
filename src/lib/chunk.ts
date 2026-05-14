@@ -1,12 +1,15 @@
-export async function splitText(text: string) {
-  const chunkSize = 1000;
-  const overlap = 200;
+export function splitText(text: string, size = 800) {
+  const clean = text.replace(/\s+/g, " ").trim();
 
-  const chunks: string[] = [];
+  const chunks = [];
 
-  for (let i = 0; i < text.length; i += chunkSize - overlap) {
-    chunks.push(text.slice(i, i + chunkSize));
+  for (let i = 0; i < clean.length; i += size) {
+    const chunk = clean.slice(i, i + size);
+
+    if (chunk.length > 100) {
+      chunks.push(chunk);
+    }
   }
 
-  return chunks.filter((c) => c.trim().length > 0);
+  return chunks;
 }

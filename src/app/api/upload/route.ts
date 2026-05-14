@@ -1,4 +1,5 @@
 import { parsePDF } from "@/lib/pdf";
+import { parseDOCX } from "@/lib/docx";
 import { splitText } from "@/lib/chunk";
 import { createEmbedding } from "@/lib/embeddings";
 import { supabaseServer } from "@/lib/supabase-server";
@@ -27,39 +28,50 @@ export async function POST(req: Request) {
 
     console.log("FILE:", file.name);
 
-    // FILE BUFFER
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // PDF -> TEXT
-    const text = await parsePDF(buffer);
-    console.log(text.slice(0, 500));
+    let text = "";
+
+    // PDF
+    if (file.name.endsWith(".pdf")) {
+      text = await parsePDF(buffer);
+    }
+
+    // DOCX
+    if (file.name.endsWith(".docx")) {
+      text = await parseDOCX(buffer);
+    }
 
     console.log("TEXT LENGTH:", text.length);
 
-    // TEXT -> CHUNKS
+    if (!text || text.length < 20) {
+      return Response.json(
+        {
+          success: false,
+          error: "Document text is empty",
+        },
+        {
+          status: 400,
+        },
+      );
+    }
+
+    // CHUNKING
     const chunks = await splitText(text);
 
     console.log("TOTAL CHUNKS:", chunks.length);
 
-    // BATCH INSERT
     const batchSize = 5;
 
     for (let i = 0; i < chunks.length; i += batchSize) {
-      console.log(`PROCESSING BATCH ${i} - ${i + batchSize}`);
-
       const batch = chunks.slice(i, i + batchSize);
 
       const rows = await Promise.all(
-        batch.map(async (chunk, index) => {
+        batch.map(async (chunk) => {
           try {
-            console.log(`CREATING EMBEDDING ${i + index + 1}`);
-
             const embedding = await createEmbedding(chunk);
 
-            if (!embedding) {
-              console.log("EMPTY EMBEDDING");
-              return null;
-            }
+            if (!embedding) return null;
 
             return {
               content: chunk,
@@ -73,12 +85,8 @@ export async function POST(req: Request) {
         }),
       );
 
-      // REMOVE NULLS
       const cleanRows = rows.filter(Boolean);
 
-      console.log("VALID ROWS:", cleanRows.length);
-
-      // INSERT INTO SUPABASE
       if (cleanRows.length > 0) {
         const { error } = await supabaseServer
           .from("documents")
@@ -97,7 +105,6 @@ export async function POST(req: Request) {
     return Response.json({
       success: true,
       chunks: chunks.length,
-      message: "Document uploaded successfully",
     });
   } catch (e: any) {
     console.error("UPLOAD ERROR:", e);
