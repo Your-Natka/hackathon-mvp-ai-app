@@ -13,19 +13,23 @@ export async function POST(req: Request) {
     // ======================
     // 1. EMBEDDING (SAFE)
     // ======================
-    let embedding: number[] = [];
+    let embedding: number[] | null = null;
 
     try {
       embedding = await createEmbedding(message);
       console.log("EMBEDDING OK");
-    } catch (e) {
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        console.log(e.message);
+      }
+
       console.log("EMBEDDING FAILED -> fallback mode");
     }
 
     // ======================
     // 2. SUPABASE SEARCH (SAFE)
     // ======================
-    if (embedding.length) {
+    if (embedding && embedding.length > 0) {
       const { data, error } = await supabaseServer.rpc("match_documents", {
         query_embedding: embedding,
         match_threshold: 0.6,
