@@ -15,7 +15,8 @@ export default function HomePage() {
               alt="Sentinel AI"
               width={54}
               height={54}
-              style={{ width: "54px", height: "54px" }}
+              className="object-contain"
+              style={{ width: "52px", height: "52px" }}
             />
 
             <div>

@@ -177,6 +177,62 @@ offline mode для об’єктів.
 
 
 
-Тестую:
+🚀 ЩО ТИ МОЖЕШ ТЕСТИТИ ЗАРАЗ
 
+Напиши в чат:
+
+🧪 ТЕСТ 1
 Які вимоги безпеки при роботі на висоті?
+🧪 ТЕСТ 2
+Які засоби індивідуального захисту потрібні?
+🧪 ТЕСТ 3
+Що говорить DBN про риштування?
+
+Ваш MVP зараз має виглядати так
+1. Upload PDF
+
+Користувач завантажує документ.
+
+2. Chunking
+
+PDF ріжеться на chunks.
+
+3. Embeddings
+
+Створюються embeddings через OpenAI.
+
+4. Supabase vector search
+
+AI знаходить релевантні частини.
+
+5. GPT answer
+
+GPT відповідає ТІЛЬКИ по документах.
+
+6. Citations
+
+Справа показуються fragments/chunks.
+
+Який стан зараз
+
+У вас уже:
+
+Next.js app
+OpenAI integration
+Supabase vector DB
+PDF upload
+embeddings
+RAG retrieval
+citations UI
+
+Це вже дуже хороший MVP для demo.
+
+Наступний правильний крок
+
+Я б зараз:
+
+Зафіксував working state
+Зробив git commit
+Перевірив 5–10 PDF
+Протестував різні questions
+Виправив retrieval quality
