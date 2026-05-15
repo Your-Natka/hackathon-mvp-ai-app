@@ -115,9 +115,7 @@ export default function DemoPage() {
             <div>
               <h1 className="text-lg font-bold tracking-wide">SENTINEL AI</h1>
 
-              <p className="text-xs text-[#94A3B8]">
-                Construction Knowledge System
-              </p>
+              <p className="text-xs text-[#94A3B8]">ELECTRONORMS AI</p>
             </div>
           </Link>
         </div>
@@ -159,7 +157,7 @@ export default function DemoPage() {
           >
             <LayoutDashboard className="w-5 h-5" />
 
-            <span>Dashboard</span>
+            <span>Інфо панель</span>
           </button>
 
           <Link
@@ -200,7 +198,7 @@ export default function DemoPage() {
           >
             <ShieldCheck className="w-5 h-5" />
 
-            <span>DBN Check</span>
+            <span>DBN Перевірити</span>
           </button>
 
           <button
@@ -280,7 +278,7 @@ export default function DemoPage() {
         <header className="h-20 bg-white border-b border-[#E6ECF5] flex items-center justify-between px-8">
           <div>
             <h2 className="text-2xl font-bold text-[#0B1736]">
-              AI Construction Assistant
+              ШІ Асістент з Електричних Норм
             </h2>
 
             <p className="text-sm text-[#667085] mt-1">
@@ -309,7 +307,7 @@ export default function DemoPage() {
                   </div>
 
                   <h3 className="text-3xl font-bold text-[#0B1736]">
-                    Sentinel AI Assistant
+                    Sentinel ШІ Асистент
                   </h3>
 
                   <p className="mt-4 max-w-xl text-[#667085] leading-relaxed">

@@ -59,10 +59,10 @@ export default function UploadPage() {
           </h1>
 
           <p className="text-[#A8B6D3] mt-4 text-lg">
-            Додайте PDF файл нормативної документації для AI аналізу
+            Додайте документ нормативної документації для AI аналізу
           </p>
         </div>
-
+        документ
         {/* UPLOAD AREA */}
         <label
           className="
