@@ -6,58 +6,45 @@ import { supabaseServer } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
 
+type DocumentRow = {
+  content: string;
+  embedding: number[];
+};
+
 export async function POST(req: Request) {
   try {
     console.log("UPLOAD STARTED");
 
     const formData = await req.formData();
+    const file = formData.get("file");
 
-    const file = formData.get("file") as File;
-
-    if (!file) {
+    if (!(file instanceof File)) {
       return Response.json(
-        {
-          success: false,
-          error: "No file uploaded",
-        },
-        {
-          status: 400,
-        },
+        { success: false, error: "No file uploaded" },
+        { status: 400 },
       );
     }
-
-    console.log("FILE:", file.name);
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
     let text = "";
 
-    // PDF
     if (file.name.endsWith(".pdf")) {
       text = await parsePDF(buffer);
-    }
-
-    // DOCX
-    if (file.name.endsWith(".docx")) {
+    } else if (file.name.endsWith(".docx")) {
       text = await parseDOCX(buffer);
     }
 
-    console.log("TEXT LENGTH:", text.length);
+    text = text?.trim() ?? "";
 
-    if (!text || text.length < 20) {
+    if (text.length < 20) {
       return Response.json(
-        {
-          success: false,
-          error: "Document text is empty",
-        },
-        {
-          status: 400,
-        },
+        { success: false, error: "Document text is empty" },
+        { status: 400 },
       );
     }
 
-    // CHUNKING
-    const chunks = await splitText(text);
+    const chunks = splitText(text);
 
     console.log("TOTAL CHUNKS:", chunks.length);
 
@@ -66,28 +53,28 @@ export async function POST(req: Request) {
     for (let i = 0; i < chunks.length; i += batchSize) {
       const batch = chunks.slice(i, i + batchSize);
 
-      const rows = await Promise.all(
-        batch.map(async (chunk) => {
-          try {
-            const embedding = await createEmbedding(chunk);
+      const rows = await Promise.allSettled(
+        batch.map(async (chunk): Promise<DocumentRow | null> => {
+          const embedding = await createEmbedding(chunk);
 
-            if (!embedding) return null;
+          if (!embedding) return null;
 
-            return {
-              content: chunk,
-              embedding,
-            };
-          } catch (e) {
-            console.error("EMBED ERROR:", e);
-
-            return null;
-          }
+          return {
+            content: chunk,
+            embedding,
+          };
         }),
       );
 
-      const cleanRows = rows.filter(Boolean);
+      const cleanRows: DocumentRow[] = rows
+        .filter(
+          (r): r is PromiseFulfilledResult<DocumentRow | null> =>
+            r.status === "fulfilled",
+        )
+        .map((r) => r.value)
+        .filter((r): r is DocumentRow => r !== null);
 
-      if (cleanRows.length > 0) {
+      if (cleanRows.length) {
         const { error } = await supabaseServer
           .from("documents")
           .insert(cleanRows);
@@ -95,7 +82,7 @@ export async function POST(req: Request) {
         if (error) {
           console.error("SUPABASE INSERT ERROR:", error);
         } else {
-          console.log("BATCH SAVED");
+          console.log(`BATCH SAVED (${cleanRows.length})`);
         }
       }
     }
@@ -112,11 +99,9 @@ export async function POST(req: Request) {
     return Response.json(
       {
         success: false,
-        error: e.message,
+        error: e?.message ?? "Unknown error",
       },
-      {
-        status: 500,
-      },
+      { status: 500 },
     );
   }
 }

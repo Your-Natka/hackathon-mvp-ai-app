@@ -1,7 +1,7 @@
 import { parsePDF } from "./pdf";
 import { pdfToImages, extractTextOCR } from "./ocr";
 
-export async function extractText(buffer: Buffer) {
+export async function extractText(buffer: Buffer): Promise<string> {
   let text = await parsePDF(buffer);
 
   // якщо PDF пустий → OCR fallback
@@ -13,11 +13,12 @@ export async function extractText(buffer: Buffer) {
     let ocrText = "";
 
     for (const img of images) {
-      ocrText += await extractTextOCR(img);
+      const extracted = await extractTextOCR(img);
+      ocrText += extracted ?? "";
     }
 
     text = ocrText;
   }
 
-  return text;
+  return text ?? "";
 }

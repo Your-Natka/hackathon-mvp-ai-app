@@ -13,29 +13,40 @@ export default function ChatPage() {
     setLoading(true);
     setResponse("");
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    });
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }),
+      });
 
-    const reader = res.body?.getReader();
-    const decoder = new TextDecoder();
+      const reader = res.body?.getReader();
 
-    let result = "";
+      if (!reader) {
+        throw new Error("No response stream");
+      }
 
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
+      const decoder = new TextDecoder();
+      let result = "";
 
-      const chunk = decoder.decode(value);
-      result += chunk;
-      setResponse((prev) => prev + chunk);
+      while (true) {
+        const { value, done } = await reader.read();
+
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+
+        result += chunk;
+        setResponse(result);
+      }
+    } catch (error) {
+      console.error("CHAT ERROR:", error);
+      setResponse("Error while fetching response");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (

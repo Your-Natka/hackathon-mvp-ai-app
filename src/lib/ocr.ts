@@ -1,27 +1,21 @@
 import { createWorker } from "tesseract.js";
-import { fromBuffer } from "pdf2pic";
 
-export async function pdfToImages(buffer: Buffer) {
-  const convert = fromBuffer(buffer, {
-    density: 200,
-    saveFilename: "page",
-    savePath: "./tmp",
-    format: "png",
-  });
+let workerPromise: Promise<any> | null = null;
 
-  const pages = await convert.bulk(-1, true);
-
-  return pages.map((p) => p.path);
+async function getWorker() {
+  if (!workerPromise) {
+    workerPromise = createWorker("eng");
+  }
+  return workerPromise;
 }
 
-export async function extractTextOCR(imagePath: string) {
-  const worker = await createWorker("eng");
+// OCR from buffer (NO FILES, NO pdf2pic)
+export async function extractTextOCR(buffer: Buffer) {
+  const worker = await getWorker();
 
   const {
     data: { text },
-  } = await worker.recognize(imagePath);
+  } = await worker.recognize(buffer);
 
-  await worker.terminate();
-
-  return text;
+  return text ?? "";
 }
