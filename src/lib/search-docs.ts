@@ -11,7 +11,7 @@ export async function searchDocs(query: string) {
 
   const { data, error } = await supabaseServer.rpc("match_documents", {
     query_embedding: embedding,
-    match_threshold: 0.7,
+    match_threshold: 0.75,
     match_count: 5,
   });
 
