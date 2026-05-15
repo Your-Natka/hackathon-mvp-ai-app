@@ -1,24 +1,28 @@
-import { supabaseServer } from "@/lib/supabase-server";
-import { createEmbedding } from "@/lib/embeddings";
+import { NextRequest, NextResponse } from "next/server";
+import { searchDocs } from "@/lib/search-docs";
 
-export async function searchDocs(query: string) {
-  const embedding = await createEmbedding(query);
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
 
-  if (!embedding) {
-    console.error("No embedding generated");
-    return [];
+    const query = body.query;
+
+    if (!query) {
+      return NextResponse.json({ error: "Query is required" }, { status: 400 });
+    }
+
+    const results = await searchDocs(query);
+
+    return NextResponse.json({
+      ok: true,
+      results,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
-
-  const { data, error } = await supabaseServer.rpc("match_documents", {
-    query_embedding: embedding,
-    match_threshold: 0.7,
-    match_count: 5,
-  });
-
-  if (error) {
-    console.error("SEARCH ERROR:", error);
-    return [];
-  }
-
-  return data ?? [];
 }
