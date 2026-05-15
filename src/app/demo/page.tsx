@@ -18,18 +18,35 @@ type Source = {
   content: string;
 };
 
+type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
+
 export default function DemoPage() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [input, setInput] = useState("");
+
+  const [messages, setMessages] = useState<Message[]>([]);
+
   const [sources, setSources] = useState<Source[]>([]);
+
   const [loading, setLoading] = useState(false);
 
   async function askAI() {
-    if (!question.trim() || loading) return;
+    if (!input.trim() || loading) return;
+
+    const userMessage: Message = {
+      role: "user",
+      content: input,
+    };
+
+    // одразу додаємо повідомлення користувача
+    setMessages((prev) => [...prev, userMessage]);
+
+    // очищаємо input
+    setInput("");
 
     setLoading(true);
-    setAnswer("");
-    setSources([]);
 
     try {
       const res = await fetch("/api/chat", {
@@ -38,22 +55,35 @@ export default function DemoPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: question,
+          message: userMessage.content,
         }),
       });
 
       const data = await res.json();
 
-      setAnswer(data.answer || "Немає відповіді");
+      // додаємо відповідь AI
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: data.answer || "Немає відповіді",
+        },
+      ]);
+
       setSources(data.sources || []);
-      setQuestion("");
     } catch (error) {
       console.error(error);
 
-      setAnswer("Помилка запиту до AI");
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Помилка запиту до AI",
+        },
+      ]);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
@@ -83,7 +113,6 @@ export default function DemoPage() {
 
         {/* MENU */}
         <div className="px-4 py-6 space-y-2">
-          {/* ACTIVE */}
           <button
             className="
               w-full
@@ -95,7 +124,6 @@ export default function DemoPage() {
               px-4
               py-4
               rounded-xl
-              transition
             "
           >
             <MessageSquare className="w-5 h-5" />
@@ -103,7 +131,6 @@ export default function DemoPage() {
             <span className="font-medium">AI Chat</span>
           </button>
 
-          {/* DASHBOARD */}
           <button
             className="
               w-full
@@ -124,7 +151,6 @@ export default function DemoPage() {
             <span>Dashboard</span>
           </button>
 
-          {/* DOCUMENTS */}
           <Link
             href="/upload"
             className="
@@ -146,7 +172,6 @@ export default function DemoPage() {
             <span>Документи</span>
           </Link>
 
-          {/* DBN CHECK */}
           <button
             className="
               w-full
@@ -167,7 +192,6 @@ export default function DemoPage() {
             <span>DBN Check</span>
           </button>
 
-          {/* SETTINGS */}
           <button
             className="
               w-full
@@ -266,7 +290,8 @@ export default function DemoPage() {
           <section className="flex-1 flex flex-col">
             {/* BODY */}
             <div className="flex-1 overflow-y-auto px-10 py-8 space-y-6">
-              {!question && !loading && (
+              {/* EMPTY STATE */}
+              {messages.length === 0 && !loading && (
                 <div className="h-full flex flex-col items-center justify-center text-center">
                   <div className="w-20 h-20 rounded-3xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center mb-6 shadow-2xl">
                     <MessageSquare className="w-10 h-10 text-white" />
@@ -283,46 +308,64 @@ export default function DemoPage() {
                 </div>
               )}
 
-              {/* USER */}
-              {question && (
-                <div className="flex justify-end">
-                  <div className="bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white max-w-[700px] px-6 py-5 rounded-3xl shadow-xl">
-                    {question}
+              {/* CHAT MESSAGES */}
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[850px] rounded-3xl px-6 py-5 shadow-sm ${
+                      message.role === "user"
+                        ? "bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white"
+                        : "bg-white border border-[#E6ECF5]"
+                    }`}
+                  >
+                    {message.role === "assistant" && (
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="w-10 h-10 rounded-2xl bg-[#EEF2FF] flex items-center justify-center">
+                          <MessageSquare className="w-5 h-5 text-[#4C6FFF]" />
+                        </div>
+
+                        <div>
+                          <h3 className="font-bold text-[#0B1736]">
+                            AI Відповідь
+                          </h3>
+
+                          <p className="text-xs text-[#94A3B8]">
+                            Sentinel Knowledge Engine
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    <div
+                      className={`leading-relaxed whitespace-pre-wrap ${
+                        message.role === "assistant"
+                          ? "text-[#475467]"
+                          : "text-white"
+                      }`}
+                    >
+                      {message.content}
+                    </div>
                   </div>
                 </div>
-              )}
-
-              {/* AI */}
-              {answer && (
-                <div className="flex justify-start">
-                  <div className="bg-white max-w-[850px] rounded-3xl p-7 shadow-sm border border-[#E6ECF5]">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-2xl bg-[#EEF2FF] flex items-center justify-center">
-                        <MessageSquare className="w-5 h-5 text-[#4C6FFF]" />
-                      </div>
-
-                      <div>
-                        <h3 className="font-bold text-[#0B1736]">
-                          AI Відповідь
-                        </h3>
-
-                        <p className="text-xs text-[#94A3B8]">
-                          Sentinel Knowledge Engine
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="text-[#475467] leading-relaxed whitespace-pre-wrap">
-                      {answer}
-                    </div>
-                  </div>
-                </div>
-              )}
+              ))}
 
               {/* LOADING */}
               {loading && (
-                <div className="text-[#667085]">
-                  AI аналізує документацію...
+                <div className="flex justify-start">
+                  <div className="bg-white border border-[#E6ECF5] rounded-3xl px-6 py-5 shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-[#4C6FFF] animate-pulse" />
+
+                      <span className="text-[#667085]">
+                        AI аналізує документацію...
+                      </span>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -331,8 +374,8 @@ export default function DemoPage() {
             <div className="bg-white border-t border-[#E6ECF5] p-6">
               <div className="max-w-5xl mx-auto flex items-center gap-4 bg-[#F4F7FB] border border-[#E6ECF5] rounded-2xl px-6 py-4">
                 <input
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
                   type="text"
                   placeholder="Запитайте про DBN, ПУЕ або електробезпеку..."
                   className="
@@ -342,10 +385,16 @@ export default function DemoPage() {
                     text-[#0B1736]
                     placeholder:text-[#98A2B3]
                   "
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      askAI();
+                    }
+                  }}
                 />
 
                 <button
                   onClick={askAI}
+                  disabled={loading}
                   className="
                     w-14
                     h-14
@@ -360,6 +409,7 @@ export default function DemoPage() {
                     shadow-2xl
                     hover:scale-[1.03]
                     transition
+                    disabled:opacity-50
                   "
                 >
                   <Send className="w-5 h-5" />

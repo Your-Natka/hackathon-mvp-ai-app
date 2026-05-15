@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     if (embedding && embedding.length > 0) {
       const { data, error } = await supabaseServer.rpc("match_documents", {
         query_embedding: embedding,
-        match_threshold: 0.6,
+        match_threshold: 0.75,
         match_count: 5,
       });
 
@@ -46,12 +46,23 @@ export async function POST(req: Request) {
     }
 
     // ======================
+    // NO SOURCES FOUND
+    // ======================
+    if (!docs.length) {
+      return Response.json({
+        answer:
+          "Інформацію по даному питанню у завантажених документах не знайдено.",
+        sources: [],
+      });
+    }
+
+    // ======================
     // 3. CONTEXT
     // ======================
     const context =
       docs.length > 0
         ? docs.map((d, i) => `[Source ${i + 1}] ${d.content}`).join("\n\n")
-        : "No documents found. Use general knowledge.";
+        : "Відповідних документів не знайдено.";
 
     // ======================
     // 4. OPENAI CHAT (SAFE)
