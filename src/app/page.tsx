@@ -11,7 +11,7 @@ export default function HomePage() {
           {/* LOGO */}
           <div className="flex items-center gap-4">
             <Image
-              src="/images/image_logo.png"
+              src="/images/image_logo_white.png"
               alt="Sentinel AI"
               width={54}
               height={54}
@@ -24,9 +24,7 @@ export default function HomePage() {
                 SENTINEL AI
               </h1>
 
-              <p className="text-white/80 text-xs">
-                Construction Knowledge System
-              </p>
+              <p className="text-white/80 text-xs">ELECTRONORM AI</p>
             </div>
           </div>
 

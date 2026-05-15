@@ -105,7 +105,7 @@ export default function DemoPage() {
         <div className="px-6 py-6 border-b border-white/5">
           <Link href="/" className="flex items-center gap-4">
             <Image
-              src="/images/image_logo.png"
+              src="/images/image_logo_white.png"
               alt="Sentinel AI"
               width={48}
               height={48}
@@ -278,7 +278,7 @@ export default function DemoPage() {
         <header className="h-20 bg-white border-b border-[#E6ECF5] flex items-center justify-between px-8">
           <div>
             <h2 className="text-2xl font-bold text-[#0B1736]">
-              ШІ Асістент з Електричних Норм
+              ШІ Асистент з Електричних Норм
             </h2>
 
             <p className="text-sm text-[#667085] mt-1">
