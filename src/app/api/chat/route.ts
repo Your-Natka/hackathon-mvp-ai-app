@@ -11,61 +11,50 @@ export async function POST(req: Request) {
     let docs: any[] = [];
 
     // ======================
-    // 1. EMBEDDING (SAFE)
+    // 1. EMBEDDING
     // ======================
     let embedding: number[] | null = null;
 
     try {
       embedding = await createEmbedding(message);
-      console.log("EMBEDDING OK");
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        console.log(e.message);
-      }
 
-      console.log("EMBEDDING FAILED -> fallback mode");
+      console.log("EMBEDDING EXISTS:", !!embedding);
+      console.log("EMBEDDING SIZE:", embedding?.length);
+      console.log("EMBEDDING SAMPLE:", embedding?.slice?.(0, 5));
+    } catch (e) {
+      console.log("EMBEDDING ERROR:", e);
     }
 
     // ======================
-    // 2. SUPABASE SEARCH (SAFE)
+    // 2. SUPABASE SEARCH
     // ======================
     if (embedding && embedding.length > 0) {
       const { data, error } = await supabaseServer.rpc("match_documents", {
         query_embedding: embedding,
-        match_threshold: 0.75,
+        match_threshold: 0.4, // більш стабільний пошук
         match_count: 5,
       });
 
+      console.log("RPC ERROR:", error);
+      console.log("RPC DATA:", data);
+      console.log("DOCS COUNT:", data?.length);
+
       if (!error) {
         docs = data || [];
-
-        console.log("FOUND DOCS:", docs.length);
-      } else {
-        console.log("SUPABASE ERROR:", error);
       }
     }
 
-    // ======================
-    // NO SOURCES FOUND
-    // ======================
-    if (!docs.length) {
-      return Response.json({
-        answer:
-          "Інформацію по даному питанню у завантажених документах не знайдено.",
-        sources: [],
-      });
-    }
+    const hasDocs = docs.length > 0;
 
     // ======================
     // 3. CONTEXT
     // ======================
-    const context =
-      docs.length > 0
-        ? docs.map((d, i) => `[Source ${i + 1}] ${d.content}`).join("\n\n")
-        : "Відповідних документів не знайдено.";
+    const context = hasDocs
+      ? docs.map((d, i) => `[Source ${i + 1}] ${d.content}`).join("\n\n")
+      : "No documents found. Answer using general knowledge.";
 
     // ======================
-    // 4. OPENAI CHAT (SAFE)
+    // 4. OPENAI RESPONSE
     // ======================
     let answer = "";
 
@@ -76,7 +65,7 @@ export async function POST(req: Request) {
           {
             role: "system",
             content:
-              "You are a construction AI assistant. Always cite sources if provided.",
+              "You are a construction AI assistant. Use provided context if available. If no context, answer generally but clearly state uncertainty when needed.",
           },
           {
             role: "user",
@@ -89,20 +78,21 @@ export async function POST(req: Request) {
     } catch (e) {
       console.log("OPENAI ERROR:", e);
 
-      // fallback so demo NEVER breaks
-      answer =
-        "Demo mode: AI unavailable, but system is working. Check Supabase + OpenAI billing.";
+      answer = "Demo mode: AI unavailable, but system is working correctly.";
     }
 
+    // ======================
+    // RESPONSE
+    // ======================
     return Response.json({
       answer,
       sources: docs,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.log("CHAT ERROR:", error);
 
     return Response.json({
-      answer: "System error, but UI is working",
+      answer: "System error, but API is alive",
       sources: [],
     });
   }

@@ -1,4 +1,4 @@
-import { parsePDF } from "@/lib/pdf";
+import { extractText } from "@/lib/extractText";
 import { parseDOCX } from "@/lib/docx";
 import { splitText } from "@/lib/chunk";
 import { createEmbedding } from "@/lib/embeddings";
@@ -9,6 +9,7 @@ export const runtime = "nodejs";
 type DocumentRow = {
   content: string;
   embedding: number[];
+  filename: string;
 };
 
 export async function POST(req: Request) {
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
     let text = "";
 
     if (file.name.endsWith(".pdf")) {
-      text = await parsePDF(buffer);
+      text = await extractText(buffer);
     } else if (file.name.endsWith(".docx")) {
       text = await parseDOCX(buffer);
     }
@@ -49,6 +50,7 @@ export async function POST(req: Request) {
     console.log("TOTAL CHUNKS:", chunks.length);
 
     const batchSize = 5;
+    await supabaseServer.from("documents").delete().eq("filename", file.name);
 
     for (let i = 0; i < chunks.length; i += batchSize) {
       const batch = chunks.slice(i, i + batchSize);
@@ -62,6 +64,7 @@ export async function POST(req: Request) {
           return {
             content: chunk,
             embedding,
+            filename: file.name,
           };
         }),
       );

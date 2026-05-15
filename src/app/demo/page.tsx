@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,12 +25,18 @@ type Message = {
 
 export default function DemoPage() {
   const [input, setInput] = useState("");
-
   const [messages, setMessages] = useState<Message[]>([]);
-
   const [sources, setSources] = useState<Source[]>([]);
-
   const [loading, setLoading] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  // AUTO SCROLL
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages, loading]);
 
   async function askAI() {
     if (!input.trim() || loading) return;
@@ -40,12 +46,16 @@ export default function DemoPage() {
       content: input,
     };
 
-    // одразу додаємо повідомлення користувача
+    // USER MESSAGE
     setMessages((prev) => [...prev, userMessage]);
 
-    // очищаємо input
+    // CLEAR INPUT
     setInput("");
 
+    // RESET SOURCES
+    setSources([]);
+
+    // LOADING
     setLoading(true);
 
     try {
@@ -61,7 +71,7 @@ export default function DemoPage() {
 
       const data = await res.json();
 
-      // додаємо відповідь AI
+      // AI MESSAGE
       setMessages((prev) => [
         ...prev,
         {
@@ -70,6 +80,7 @@ export default function DemoPage() {
         },
       ]);
 
+      // SOURCES
       setSources(data.sources || []);
     } catch (error) {
       console.error(error);
@@ -368,6 +379,9 @@ export default function DemoPage() {
                   </div>
                 </div>
               )}
+
+              {/* AUTO SCROLL TARGET */}
+              <div ref={messagesEndRef} />
             </div>
 
             {/* INPUT */}
@@ -431,8 +445,7 @@ export default function DemoPage() {
             {sources.length === 0 ? (
               <div className="bg-[#F8FAFC] rounded-2xl p-5 border border-[#EEF2F6]">
                 <p className="text-sm text-[#98A2B3] leading-relaxed">
-                  Тут будуть відображатись фрагменти документів, які AI
-                  використовував для генерації відповіді.
+                  Джерела для цієї відповіді не знайдені.
                 </p>
               </div>
             ) : (
