@@ -109,207 +109,215 @@ export default function HomePage() {
       >
         {/* CONTENT */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8">
-          <div
-            className="
-              grid
-              lg:grid-cols-[940px_1fr]
+          <div className="max-w-[860px] min-h-[78vh] flex flex-col justify-center">
+            {/* TITLE */}
+            <h2
+              className="
+          text-[38px]
+          md:text-[56px]
+          xl:text-[68px]
+          leading-[1.02]
+          tracking-[-0.04em]
+          font-semibold
+          text-white
+        "
+            >
+              Помічник у проєктуванні,
+              <br />
+              будівництві та обслуговуванні
+              <br />
+              електричних мереж
+            </h2>
+
+            {/* DESCRIPTION */}
+            <p
+              className="
+          mt-8
+          text-[18px]
+          xl:text-[20px]
+          leading-[1.8]
+          text-white/70
+          max-w-[640px]
+        "
+            >
+              Миттєвий доступ до консультацій по ДБН, стандартам, внутрішнім
+              регламентам компанії та технічній документації на базі штучного
+              інтелекту.
+            </p>
+
+            {/* FEATURES */}
+            <div className="mt-12 space-y-6 max-w-[560px]">
+              {/* ITEM */}
+              <div className="flex items-start gap-5">
+                <div
+                  className="
+              w-12
+              h-12
+              rounded-2xl
+              bg-white/10
+              border
+              border-white/10
+              flex
               items-center
-              gap-10
-              min-h-[78vh]
+              justify-center
+              shrink-0
+              backdrop-blur-xl
             "
-          >
-            {/* ================= LEFT SIDE ================= */}
-            <div className="max-w-[940px]">
-              {/* TITLE */}
-              <h2
-                className="
-                  text-[37px]
-                  md:text-[56px]
-                  xl:text-[64px]
-                  leading-[1.05]
-                 
-                  tracking-[-0.03em]
-                  text-white/90
-                "
-              >
-                Помічник у проєктуванні, будівництві та обслуговуванні
-                <br />
-                електричних мереж
-              </h2>
-
-              {/* DESCRIPTION */}
-              <p
-                className="
-                  mt-7
-                  text-[18px]
-                  xl:text-[20px]
-                  leading-[1.7]
-                  text-white/75
-                  max-w-[560px]
-                  text-white/70
-                "
-              >
-                Миттєвий доступ до консультацій по ДБН, стандартам та внутрішнім
-                регламентам компанії на базі штучного інтелекту
-              </p>
-
-              {/* FEATURES */}
-              <div className="mt-10 space-y-5 max-w-[500px]">
-                {/* ITEM */}
-                <div className="flex items-start gap-6">
-                  <div
-                    className="
-                      w-5
-                      h-5
-                      mt-1
-                      text-[#5EA2FF]
-                      drop-shadow-[0_0_12px_rgba(94,162,255,0.45)]
-                      shrink-0
-                     
-                    "
-                  >
-                    <Search className="w-8 h-8 text-[#76A5FF]" />
-                  </div>
-
-                  <div>
-                    <h3 className="text-white/90 font-semibold text-lg">
-                      Розумний пошук
-                    </h3>
-
-                    <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      Швидкий пошук норм та вимог у документах.
-                    </p>
-                  </div>
+                >
+                  <Search className="w-6 h-6 text-[#76A5FF]" />
                 </div>
 
-                {/* ITEM */}
-                <div className="flex items-start gap-6">
-                  <div
-                    className="
-                      w-5
-                      h-5
-                      mt-1
-                      text-[#5EA2FF]
-                      drop-shadow-[0_0_12px_rgba(94,162,255,0.45)]
-                      shrink-0
-                    "
-                  >
-                    <ShieldCheck className="w-8 h-8 text-[#76A5FF]" />
-                  </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    Розумний пошук
+                  </h3>
 
-                  <div>
-                    <h3 className="text-white/90 font-semibold text-lg">
-                      Точні відповіді
-                    </h3>
+                  <p className="text-white/60 text-sm leading-relaxed mt-1">
+                    Швидкий пошук норм, вимог та технічної інформації у великих
+                    масивах документації.
+                  </p>
+                </div>
+              </div>
 
-                    <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      ШІ аналізує ДБН та внутрішні регламенти.
-                    </p>
-                  </div>
+              {/* ITEM */}
+              <div className="flex items-start gap-5">
+                <div
+                  className="
+              w-12
+              h-12
+              rounded-2xl
+              bg-white/10
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              shrink-0
+              backdrop-blur-xl
+            "
+                >
+                  <ShieldCheck className="w-6 h-6 text-[#76A5FF]" />
                 </div>
 
-                {/* ITEM */}
-                <div className="flex items-start gap-6">
-                  <div
-                    className="
-                      w-5
-                      h-5
-                      mt-1
-                      text-[#5EA2FF]
-                      drop-shadow-[0_0_12px_rgba(94,162,255,0.45)]
-                      shrink-0
-                    "
-                  >
-                    <FileText className="w-8 h-8 text-[#76A5FF]" />
-                  </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    Точні відповіді
+                  </h3>
 
-                  <div>
-                    <h3 className="text-white/90 font-semibold text-lg">
-                      Документи компанії
-                    </h3>
+                  <p className="text-white/60 text-sm leading-relaxed mt-1">
+                    AI аналізує ДБН, ПУЕ та внутрішні регламенти для формування
+                    релевантних відповідей.
+                  </p>
+                </div>
+              </div>
 
-                    <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      Єдиний центр інструкцій та документації.
-                    </p>
-                  </div>
+              {/* ITEM */}
+              <div className="flex items-start gap-5">
+                <div
+                  className="
+              w-12
+              h-12
+              rounded-2xl
+              bg-white/10
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              shrink-0
+              backdrop-blur-xl
+            "
+                >
+                  <FileText className="w-6 h-6 text-[#76A5FF]" />
                 </div>
 
-                {/* ITEM */}
-                <div className="flex items-start gap-6">
-                  <div
-                    className="
-                      w-5
-                      h-5
-                      mt-1
-                      text-[#5EA2FF]
-                      drop-shadow-[0_0_12px_rgba(94,162,255,0.45)]
-                      shrink-0
-                    "
-                  >
-                    <Zap className="w-8 h-8 text-[#76A5FF]" />
-                  </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    Документи компанії
+                  </h3>
 
-                  <div>
-                    <h3 className="text-white/90 font-semibold text-lg">
-                      Економія часу
-                    </h3>
+                  <p className="text-white/60 text-sm leading-relaxed mt-1">
+                    Централізований доступ до нормативів, інструкцій та
+                    технічної документації.
+                  </p>
+                </div>
+              </div>
 
-                    <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      Автоматизація перевірок та пошуку інформації.
-                    </p>
-                  </div>
+              {/* ITEM */}
+              <div className="flex items-start gap-5">
+                <div
+                  className="
+              w-12
+              h-12
+              rounded-2xl
+              bg-white/10
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              shrink-0
+              backdrop-blur-xl
+            "
+                >
+                  <Zap className="w-6 h-6 text-[#76A5FF]" />
+                </div>
+
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    Економія часу
+                  </h3>
+
+                  <p className="text-white/60 text-sm leading-relaxed mt-1">
+                    Автоматизація перевірок та швидкий пошук потрібної
+                    інформації для інженерів.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* ================= RIGHT SIDE ================= */}
-            <div className="hidden lg:flex justify-end items-end h-full">
-              {/* BUTTONS */}
-              <div className="pb-8 flex gap-5">
-                <Link
-                  href="/demo"
-                  className="
-                    bg-gradient-to-r
-                    from-[#4C6FFF]
-                    to-[#7356FF]
-                    px-8
-                    py-4
-                    rounded-2xl
-                    text-white
-                    font-semibold
-                    shadow-[0_15px_40px_rgba(76,111,255,0.35)]
-                    hover:scale-[1.03]
-                    transition
-                    text-white/90
-                  "
-                >
-                  Спробувати AI
-                </Link>
+            {/* BUTTONS */}
+            <div className="mt-14 flex flex-wrap gap-5">
+              <Link
+                href="/demo"
+                className="
+            bg-gradient-to-r
+            from-[#4C6FFF]
+            to-[#7356FF]
+            px-8
+            py-4
+            rounded-2xl
+            text-white
+            font-semibold
+            shadow-[0_15px_40px_rgba(76,111,255,0.35)]
+            hover:scale-[1.03]
+            transition
+          "
+              >
+                Спробувати AI
+              </Link>
 
-                <button
-                  className="
-                    border
-                    border-white/20
-                    bg-white/10
-                    backdrop-blur-xl
-                    px-8
-                    py-4
-                    rounded-2xl
-                    text-white
-                    hover:bg-white/20
-                    transition
-                    text-white/90
-
-                  "
-                >
-                  Дізнатися більше
-                </button>
-              </div>
+              <button
+                className="
+            border
+            border-white/20
+            bg-white/10
+            backdrop-blur-xl
+            px-8
+            py-4
+            rounded-2xl
+            text-white
+            hover:bg-white/20
+            transition
+          "
+              >
+                Дізнатися більше
+              </button>
             </div>
           </div>
 
           {/* TRUST */}
-          <div className="relative z-10 mt-10">
+          <div className="relative z-10 mt-16">
             <p className="text-[#C0CAE0] text-sm tracking-[0.22em] uppercase">
               Нам довіряють будівельні компанії
             </p>
