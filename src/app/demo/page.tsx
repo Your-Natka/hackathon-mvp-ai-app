@@ -25,6 +25,8 @@ export interface Source {
   similarity?: number;
 
   title?: string;
+  point?: string;
+  relevance?: string;
 }
 
 type Message = {
