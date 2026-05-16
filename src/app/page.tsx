@@ -119,7 +119,7 @@ export default function HomePage() {
           leading-[1.02]
           tracking-[-0.04em]
           font-semibold
-          text-white
+          text-white/90
         "
             >
               Помічник у проєктуванні,
@@ -138,6 +138,7 @@ export default function HomePage() {
           leading-[1.8]
           text-white/70
           max-w-[640px]
+          text-white/70
         "
             >
               Миттєвий доступ до консультацій по ДБН, стандартам, внутрішнім
@@ -168,7 +169,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-lg">
+                  <h3 className="text-white/90 font-semibold text-lg">
                     Розумний пошук
                   </h3>
 
@@ -200,7 +201,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-lg">
+                  <h3 className="text-white/90 font-semibold text-lg">
                     Точні відповіді
                   </h3>
 
@@ -232,7 +233,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-lg">
+                  <h3 className="text-white/90 font-semibold text-lg">
                     Документи компанії
                   </h3>
 
@@ -264,7 +265,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-lg">
+                  <h3 className="text-white/90 font-semibold text-lg">
                     Економія часу
                   </h3>
 
@@ -287,7 +288,7 @@ export default function HomePage() {
             px-8
             py-4
             rounded-2xl
-            text-white
+            text-white/90
             font-semibold
             shadow-[0_15px_40px_rgba(76,111,255,0.35)]
             hover:scale-[1.03]
@@ -306,7 +307,7 @@ export default function HomePage() {
             px-8
             py-4
             rounded-2xl
-            text-white
+            text-white/90
             hover:bg-white/20
             transition
           "
