@@ -19,9 +19,13 @@ import {
   CircleDot,
 } from "lucide-react";
 
-type Source = {
+export interface Source {
   content: string;
-};
+  page?: number;
+  similarity?: number;
+
+  title?: string;
+}
 
 type Message = {
   role: "user" | "assistant";
