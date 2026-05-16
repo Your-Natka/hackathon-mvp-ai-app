@@ -127,14 +127,14 @@ export default function HomePage() {
                   md:text-[56px]
                   xl:text-[64px]
                   leading-[1.05]
-                  font-bold
+                 
                   tracking-[-0.03em]
                   text-white/90
                 "
               >
-                Інтелектуальний помічник
+                Помічник у проєктуванні, будівництві та обслуговуванні
                 <br />
-                для інженерів та проєктувальників
+                електричних мереж
               </h2>
 
               {/* DESCRIPTION */}
@@ -149,8 +149,8 @@ export default function HomePage() {
                   text-white/70
                 "
               >
-                Миттєвий доступ до консультацій по DBN, ПУЕ, ДСТУ,
-                електробезпеці та внутрішнім регламентам компанії.
+                Миттєвий доступ до консультацій по ДБН, стандартам та внутрішнім
+                регламентам компанії на базі штучного інтелекту
               </p>
 
               {/* FEATURES */}
@@ -203,7 +203,7 @@ export default function HomePage() {
                     </h3>
 
                     <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      AI аналізує DBN, ПУЕ та внутрішні регламенти.
+                      ШІ аналізує ДБН та внутрішні регламенти.
                     </p>
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function HomePage() {
                     </h3>
 
                     <p className="text-white/60 text-sm leading-relaxed mt-1">
-                      Єдиний центр інструкцій та нормативної документації.
+                      Єдиний центр інструкцій та документації.
                     </p>
                   </div>
                 </div>

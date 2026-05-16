@@ -185,9 +185,9 @@ export default function DemoPage() {
             </div>
 
             <div className="text-left">
-              <p className="font-medium">AI Chat</p>
+              <p className="font-medium">ШІ Чат</p>
 
-              <p className="text-xs text-[#8EA0C5]">AI асистент</p>
+              <p className="text-xs text-[#8EA0C5]">ШІ асистент</p>
             </div>
           </button>
 
@@ -250,7 +250,7 @@ export default function DemoPage() {
           >
             <ShieldCheck className="w-5 h-5" />
 
-            <span>DBN Check</span>
+            <span>ДБН Перевірити</span>
           </button>
 
           <button
@@ -448,11 +448,11 @@ export default function DemoPage() {
                   </div>
 
                   <h3 className="text-4xl font-bold text-[#0B1736]">
-                    Sentinel ШІ Асистент
+                    Sentinel ШІ помічник
                   </h3>
 
                   <p className="mt-5 max-w-2xl text-[#667085] leading-relaxed text-lg">
-                    Запитайте про ПУЕ, DBN, групи допуску, електробезпеку,
+                    Запитайте про ПУЕ, ДБН, групи допуску, електробезпеку,
                     заземлення або нормативи.
                   </p>
                 </div>
@@ -647,7 +647,7 @@ export default function DemoPage() {
               <h3 className="text-2xl font-bold text-[#0B1736]">Джерела</h3>
 
               <p className="text-sm text-[#667085] mt-1">
-                Фрагменти нормативної документації
+                ШІ використовує нормативну документацію
               </p>
             </div>
 
