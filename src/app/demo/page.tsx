@@ -213,7 +213,7 @@ export default function DemoPage() {
           </button>
 
           <Link
-            href="/upload"
+            href="/documents"
             className="
               w-full
               flex
@@ -363,25 +363,26 @@ export default function DemoPage() {
           {/* RIGHT PANEL (3 IN 1) */}
           <div className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E7ECF5] px-4 py-2 rounded-2xl">
             {/* 1 - KNOWLEDGE BASE */}
-            <button
+            <Link
+              href="/upload"
               className="
-    flex
-    items-center
-    gap-2
-    px-4
-    py-3
-    rounded-2xl
-    border
-    border-[#E2E8F0]
-    text-[#475467]
-    hover:bg-[#F8FAFC]
-    transition
-  "
+                flex
+                items-center
+                gap-2
+                px-4
+                py-3
+                rounded-2xl
+                border
+                border-[#E2E8F0]
+                text-[#475467]
+                hover:bg-[#F8FAFC]
+                transition
+              "
             >
               <Database className="w-4 h-4" />
 
               <span className="font-medium">База знань</span>
-            </button>
+            </Link>
 
             <div className="w-px h-6 bg-[#E7ECF5]" />
 
@@ -431,20 +432,20 @@ export default function DemoPage() {
                 <div className="h-full flex flex-col items-center justify-center text-center">
                   <div
                     className="
-              w-24
-              h-24
-              rounded-[28px]
-              bg-gradient-to-r
-              from-[#4C6FFF]
-              to-[#7356FF]
-              flex
-              items-center
-              justify-center
-              shadow-[0_20px_60px_rgba(76,111,255,0.35)]
-              mb-8
-            "
+                      w-24
+                      h-24
+                      rounded-[28px]
+                      bg-gradient-to-r
+                      from-[#4C6FFF]
+                      to-[#7356FF]
+                      flex
+                      items-center
+                      justify-center
+                      shadow-[0_20px_60px_rgba(76,111,255,0.35)]
+                      mb-8
+                    "
                   >
-                    <MessageSquare className="w-11 h-11 text-white" />
+                    <MessageSquare className="w-11 h-11 text-white " />
                   </div>
 
                   <h3 className="text-4xl font-bold text-[#0B1736]">
@@ -469,42 +470,46 @@ export default function DemoPage() {
                   >
                     <div className="flex items-start gap-4 max-w-[900px]">
                       {/* AVATAR */}
-                      {!isUser && (
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center shrink-0 shadow-lg">
-                          <MessageSquare className="w-5 h-5 text-white" />
-                        </div>
-                      )}
-
-                      {isUser && (
-                        <div className="w-12 h-12 rounded-2xl bg-[#0B1736] text-white flex items-center justify-center font-semibold shrink-0 order-2">
-                          U
-                        </div>
-                      )}
 
                       {/* MESSAGE BUBBLE */}
                       <div
                         className={`
-            rounded-[28px]
-            px-6
-            py-5
-            shadow-sm
-            max-w-[800px]
-            ${
-              isUser
-                ? "bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white order-1"
-                : "bg-white border border-[#E7ECF5]"
-            }
-          `}
+                          rounded-[28px]
+                          px-6
+                          py-5
+                          shadow-sm
+                          max-w-[800px]
+                          ${
+                            isUser
+                              ? "bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white order-1"
+                              : "bg-white border border-[#E7ECF5]"
+                          }
+                        `}
                       >
                         {/* AI HEADER */}
                         {!isUser && (
-                          <div className="mb-4">
-                            <h4 className="font-semibold text-[#0B1736]">
-                              Sentinel AI
-                            </h4>
-                            <p className="text-xs text-[#98A2B3]">
-                              Knowledge Engine
-                            </p>
+                          <div className="mb-4 flex items-center gap-3 ">
+                            <div className="flex items-center gap-3">
+                              {!isUser && (
+                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center shadow-lg">
+                                  <MessageSquare className="w-5 h-5 text-white" />
+                                </div>
+                              )}
+
+                              {isUser && (
+                                <div className="w-12 h-12 rounded-2xl bg-[#0B1736] text-white flex items-center justify-center font-semibold">
+                                  U
+                                </div>
+                              )}
+                            </div>
+                            <div className="mb-4 ">
+                              <h4 className="font-semibold text-[#0B1736]">
+                                ШI Відповідь
+                              </h4>
+                              <p className="text-xs text-[#98A2B3]">
+                                Knowledge Engine
+                              </p>
+                            </div>
                           </div>
                         )}
 
@@ -643,6 +648,7 @@ export default function DemoPage() {
 
           {/* RIGHT COLUMN - SOURCES */}
           <aside className="w-[360px] bg-white border-l border-[#E7ECF5] overflow-y-auto p-5 shrink-0">
+            {/* HEADER */}
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-[#0B1736]">Джерела</h3>
 
@@ -651,16 +657,9 @@ export default function DemoPage() {
               </p>
             </div>
 
+            {/* EMPTY STATE */}
             {sources.length === 0 ? (
-              <div
-                className="
-          rounded-3xl
-          border
-          border-[#E7ECF5]
-          bg-[#F8FAFC]
-          p-5
-        "
-              >
+              <div className="rounded-3xl border border-[#E7ECF5] bg-[#F8FAFC] p-5">
                 <p className="text-sm text-[#98A2B3] leading-relaxed">
                   Тут з’являться релевантні фрагменти документів.
                 </p>
@@ -671,36 +670,60 @@ export default function DemoPage() {
                   <div
                     key={index}
                     className="
-              bg-[#F8FAFC]
-              rounded-3xl
-              p-5
-              border
-              border-[#E7ECF5]
-            "
+            bg-[#F8FAFC]
+            rounded-3xl
+            p-5
+            border
+            border-[#E7ECF5]
+          "
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className="
-                  text-xs
-                  font-semibold
-                  text-[#067647]
-                  bg-[#ECFDF3]
-                  border
-                  border-[#ABEFC6]
-                  px-3
-                  py-1.5
-                  rounded-full
-                "
-                      >
-                        MATCH FOUND
-                      </span>
+                    {/* TOP ROW: ICON + DOC NAME */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-9 h-9 rounded-xl bg-white border border-[#E7ECF5] flex items-center justify-center">
+                        <FileText className="w-4 h-4 text-[#4C6FFF]" />
+                      </div>
 
-                      <span className="text-xs text-[#98A2B3]">doc</span>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-[#0B1736]">
+                          {source.title || "Нормативний документ"}
+                        </span>
+
+                        <span className="text-xs text-[#98A2B3]">
+                          PDF документ
+                        </span>
+                      </div>
                     </div>
 
-                    <p className="text-sm text-[#475467] leading-relaxed">
+                    {/* CONTENT */}
+                    <p className="text-sm text-[#475467] leading-relaxed mb-4">
                       {source.content}
                     </p>
+
+                    {/* FOOTER */}
+                    <div className="flex items-center justify-between">
+                      <div className="text-xs text-[#667085]">
+                        <span className="font-medium">Параграф:</span>{" "}
+                        {source.point || "—"} ·{" "}
+                        <span className="font-medium">Стор.:</span>{" "}
+                        {source.page || "—"}
+                      </div>
+
+                      <span
+                        className="
+                          text-xs
+                          font-semibold
+                          text-[#067647]
+                          bg-[#ECFDF3]
+                          border
+                          border-[#ABEFC6]
+                          px-3
+                          py-1.5
+                          rounded-full
+                        "
+                      >
+                        {source.relevance || "відповідність"}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>

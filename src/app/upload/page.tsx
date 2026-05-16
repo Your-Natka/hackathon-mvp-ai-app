@@ -62,7 +62,7 @@ export default function UploadPage() {
             Додайте документ нормативної документації для AI аналізу
           </p>
         </div>
-        документ
+
         {/* UPLOAD AREA */}
         <label
           className="
