@@ -35,27 +35,27 @@ export default function DemoPage() {
   const [loading, setLoading] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-  const isRequesting = useRef(false);
+    const isRequesting = useRef(false);
 
-  // AUTO SCROLL
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+    // AUTO SCROLL
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages, loading]);
 
-  function clearChat() {
-    setMessages([]);
-    setSources([]);
-  }
+    function clearChat() {
+        setMessages([]);
+        setSources([]);
+    }
 
-  async function askAI() {
+    async function askAI() {
     const text = input.trim();
     if (!text || isRequesting.current) return;
 
     isRequesting.current = true;
 
     const userMessage: Message = {
-      role: "user",
-      content: text,
+        role: "user",
+        content: text,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -64,42 +64,42 @@ export default function DemoPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chat", {
+        const res = await fetch("/api/chat", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: text,
+            message: text,
         }),
-      });
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      setMessages((prev) => [
+        setMessages((prev) => [
         ...prev,
         {
-          role: "assistant",
-          content: data.answer || "Немає відповіді",
+            role: "assistant",
+            content: data.answer || "Немає відповіді",
         },
-      ]);
+        ]);
 
-      setSources(data.sources || []);
+        setSources(data.sources || []);
     } catch (error) {
-      console.error(error);
+        console.error(error);
 
-      setMessages((prev) => [
+        setMessages((prev) => [
         ...prev,
         {
-          role: "assistant",
-          content: "Помилка запиту до AI",
+            role: "assistant",
+            content: "Помилка запиту до AI",
         },
-      ]);
+        ]);
     } finally {
-      setLoading(false);
-      isRequesting.current = false;
+        setLoading(false);
+        isRequesting.current = false;
     }
-  }
+}
 
   return (
     <main className="h-screen flex overflow-hidden bg-[#EEF3FA]">
@@ -459,68 +459,100 @@ export default function DemoPage() {
               )}
 
               {/* MESSAGES */}
-              {messages.map((message, index) => {
-                const isUser = message.role === "user";
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div className="flex items-start gap-4 max-w-[900px]">
+                    {/* AI AVATAR */}
+                    {message.role === "assistant" && (
+                      <div
+                        className="
+                  w-12
+                  h-12
+                  rounded-2xl
+                  bg-gradient-to-r
+                  from-[#4C6FFF]
+                  to-[#7356FF]
+                  flex
+                  items-center
+                  justify-center
+                  shrink-0
+                  shadow-lg
+                "
+                      >
+                        <MessageSquare className="w-5 h-5 text-white" />
+                      </div>
+                    )}
 
-                return (
-                  <div
-                    key={index}
-                    className={`flex ${isUser ? "justify-end" : "justify-start"}`}
-                  >
-                    <div className="flex items-start gap-4 max-w-[900px]">
-                      {/* AVATAR */}
-                      {!isUser && (
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center shrink-0 shadow-lg">
-                          <MessageSquare className="w-5 h-5 text-white" />
+                    {/* USER AVATAR */}
+                    {message.role === "user" && (
+                      <div
+                        className="
+                  w-12
+                  h-12
+                  rounded-2xl
+                  bg-[#0B1736]
+                  text-white
+                  flex
+                  items-center
+                  justify-center
+                  font-semibold
+                  shrink-0
+                  order-2
+                "
+                      >
+                        U
+                      </div>
+                    )}
+
+                    {/* MESSAGE */}
+                    <div
+                      className={`
+                rounded-[28px]
+                px-6
+                py-5
+                shadow-sm
+                max-w-[800px]
+                ${
+                  message.role === "user"
+                    ? "bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white order-1"
+                    : "bg-white border border-[#E7ECF5]"
+                }
+              `}
+                    >
+                      {message.role === "assistant" && (
+                        <div className="mb-4">
+                          <h4 className="font-semibold text-[#0B1736]">
+                            Sentinel AI
+                          </h4>
+
+                          <p className="text-xs text-[#98A2B3]">
+                            Knowledge Engine
+                          </p>
                         </div>
                       )}
 
-                      {isUser && (
-                        <div className="w-12 h-12 rounded-2xl bg-[#0B1736] text-white flex items-center justify-center font-semibold shrink-0 order-2">
-                          U
-                        </div>
-                      )}
-
-                      {/* MESSAGE BUBBLE */}
                       <div
                         className={`
-            rounded-[28px]
-            px-6
-            py-5
-            shadow-sm
-            max-w-[800px]
-            ${
-              isUser
-                ? "bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] text-white order-1"
-                : "bg-white border border-[#E7ECF5]"
-            }
-          `}
+                  whitespace-pre-wrap
+                  leading-relaxed
+                  ${
+                    message.role === "assistant"
+                      ? "text-[#475467]"
+                      : "text-white"
+                  }
+                `}
                       >
-                        {/* AI HEADER */}
-                        {!isUser && (
-                          <div className="mb-4">
-                            <h4 className="font-semibold text-[#0B1736]">
-                              Sentinel AI
-                            </h4>
-                            <p className="text-xs text-[#98A2B3]">
-                              Knowledge Engine
-                            </p>
-                          </div>
-                        )}
-
-                        {/* TEXT */}
-                        <div
-                          className={`whitespace-pre-wrap leading-relaxed ${
-                            isUser ? "text-white" : "text-[#475467]"
-                          }`}
-                        >
-                          {message.content}
-                        </div>
+                        {message.content}
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
 
               {/* LOADING */}
               {loading && (
@@ -695,7 +727,7 @@ export default function DemoPage() {
                         MATCH FOUND
                       </span>
 
-                      <span className="text-xs text-[#98A2B3]">doc</span>
+                      <span className="text-xs text-[#98A2B3]">PDF</span>
                     </div>
 
                     <p className="text-sm text-[#475467] leading-relaxed">
