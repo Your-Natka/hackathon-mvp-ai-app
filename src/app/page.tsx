@@ -156,7 +156,7 @@ export default function HomePage() {
               {/* FEATURES */}
               <div className="mt-10 space-y-5 max-w-[500px]">
                 {/* ITEM */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-6">
                   <div
                     className="
                       w-5
@@ -168,7 +168,7 @@ export default function HomePage() {
                      
                     "
                   >
-                    <Search className="w-5 h-5 text-[#76A5FF]" />
+                    <Search className="w-8 h-8 text-[#76A5FF]" />
                   </div>
 
                   <div>
@@ -183,7 +183,7 @@ export default function HomePage() {
                 </div>
 
                 {/* ITEM */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-6">
                   <div
                     className="
                       w-5
@@ -194,7 +194,7 @@ export default function HomePage() {
                       shrink-0
                     "
                   >
-                    <ShieldCheck className="w-5 h-5 text-[#76A5FF]" />
+                    <ShieldCheck className="w-8 h-8 text-[#76A5FF]" />
                   </div>
 
                   <div>
@@ -209,7 +209,7 @@ export default function HomePage() {
                 </div>
 
                 {/* ITEM */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-6">
                   <div
                     className="
                       w-5
@@ -218,13 +218,9 @@ export default function HomePage() {
                       text-[#5EA2FF]
                       drop-shadow-[0_0_12px_rgba(94,162,255,0.45)]
                       shrink-0
-                      flex
-                      items-center
-                      justify-center
-                      shrink-0
                     "
                   >
-                    <FileText className="w-5 h-5 text-[#76A5FF]" />
+                    <FileText className="w-8 h-8 text-[#76A5FF]" />
                   </div>
 
                   <div>
@@ -239,7 +235,7 @@ export default function HomePage() {
                 </div>
 
                 {/* ITEM */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-6">
                   <div
                     className="
                       w-5
@@ -250,7 +246,7 @@ export default function HomePage() {
                       shrink-0
                     "
                   >
-                    <Zap className="w-5 h-5 text-[#76A5FF]" />
+                    <Zap className="w-8 h-8 text-[#76A5FF]" />
                   </div>
 
                   <div>
