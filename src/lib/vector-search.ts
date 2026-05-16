@@ -11,9 +11,9 @@ export async function searchDocuments(query: string) {
   });
 
   if (error) {
-    console.error(error);
+    console.error("SUPABASE SEARCH ERROR:", error);
 
-    return [];
+    throw error;
   }
 
   return data;
