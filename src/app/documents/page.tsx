@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   MessageSquare,
   FileText,
@@ -56,11 +57,15 @@ export default function DocumentsPage() {
         {/* LOGO */}
         <div className="flex items-center gap-3 mb-8">
           <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-            <img
-              src="/images/sentinel-logo_white.png"
-              alt="Sentinel AI"
-              className="w-8 h-8 object-contain"
-            />
+            <Link href="/" className="flex items-center gap-4">
+              <Image
+                src="/images/image_logo_white.png"
+                alt="Sentinel AI"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
+            </Link>
           </div>
 
           <div>
@@ -97,7 +102,20 @@ export default function DocumentsPage() {
           </button>
 
           {/* DOCUMENTS ACTIVE */}
-          <button className="flex items-center gap-4 h-14 px-4 rounded-xl bg-[#2453ff] text-white transition">
+          <button
+            className="w-full
+              flex
+              items-center
+              gap-4
+              bg-[#132447]
+              border
+              border-[#335CFF]/30
+              text-white
+              px-4
+              py-4
+              rounded-2xl
+              shadow-[0_0_25px_rgba(76,111,255,0.15)]"
+          >
             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
               <FileText size={20} />
             </div>
@@ -171,7 +189,7 @@ export default function DocumentsPage() {
               Всі документи
             </button>
 
-            <button className="pb-4 text-slate-500">Норми (DBN)</button>
+            <button className="pb-4 text-slate-500">Норми (ДБН)</button>
 
             <button className="pb-4 text-slate-500">
               Внутрішні регламенти
