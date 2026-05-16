@@ -1,6 +1,7 @@
 import { openai } from "@/lib/openai";
 import { supabaseServer } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
+import { SYSTEM_PROMPT } from "@/utils/prompts";
 
 export async function POST(req: Request) {
   try {
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
     let docs: any[] = [];
 
     // ======================
-    // 1. EMBEDDING
+    // 1. CREATE EMBEDDING
     // ======================
     let embedding: number[] | null = null;
 
@@ -20,23 +21,21 @@ export async function POST(req: Request) {
 
       console.log("EMBEDDING EXISTS:", !!embedding);
       console.log("EMBEDDING SIZE:", embedding?.length);
-      console.log("EMBEDDING SAMPLE:", embedding?.slice?.(0, 5));
     } catch (e) {
       console.log("EMBEDDING ERROR:", e);
     }
 
     // ======================
-    // 2. SUPABASE SEARCH
+    // 2. SUPABASE VECTOR SEARCH
     // ======================
     if (embedding && embedding.length > 0) {
       const { data, error } = await supabaseServer.rpc("match_documents", {
         query_embedding: embedding,
-        match_threshold: 0.4, // більш стабільний пошук
+        match_threshold: 0.4,
         match_count: 5,
       });
 
       console.log("RPC ERROR:", error);
-      console.log("RPC DATA:", data);
       console.log("DOCS COUNT:", data?.length);
 
       if (!error) {
@@ -44,14 +43,13 @@ export async function POST(req: Request) {
       }
     }
 
-    const hasDocs = docs.length > 0;
-
     // ======================
-    // 3. CONTEXT
+    // 3. BUILD CONTEXT
     // ======================
-    const context = hasDocs
-      ? docs.map((d, i) => `[Source ${i + 1}] ${d.content}`).join("\n\n")
-      : "No documents found. Answer using general knowledge.";
+    const context =
+      docs.length > 0
+        ? docs.map((d, i) => `[Source ${i + 1}] ${d.content}`).join("\n\n")
+        : "No relevant documents found.";
 
     // ======================
     // 4. OPENAI RESPONSE
@@ -61,28 +59,42 @@ export async function POST(req: Request) {
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
+
         messages: [
           {
             role: "system",
-            content:
-              "You are a construction AI assistant. Use provided context if available. If no context, answer generally but clearly state uncertainty when needed.",
+            content: SYSTEM_PROMPT,
           },
+
           {
             role: "user",
-            content: `Context:\n${context}\n\nQuestion:\n${message}`,
+            content: `
+CONTEXT:
+${context}
+
+QUESTION:
+${message}
+
+Instructions:
+- Use provided context when available
+- Stay within electrical and construction domain
+- If context is insufficient, answer carefully using technical knowledge
+            `,
           },
         ],
       });
 
-      answer = completion.choices[0]?.message?.content || "";
+      answer =
+        completion.choices[0]?.message?.content || "No response generated.";
     } catch (e) {
       console.log("OPENAI ERROR:", e);
 
-      answer = "Demo mode: AI unavailable, but system is working correctly.";
+      answer =
+        "AI service is temporarily unavailable, but the system is operational.";
     }
 
     // ======================
-    // RESPONSE
+    // 5. RESPONSE
     // ======================
     return Response.json({
       answer,
@@ -92,7 +104,7 @@ export async function POST(req: Request) {
     console.log("CHAT ERROR:", error);
 
     return Response.json({
-      answer: "System error, but API is alive",
+      answer: "System error, but API is alive.",
       sources: [],
     });
   }
