@@ -146,35 +146,36 @@ export default function DocumentsPage() {
             {/* DOCUMENTS ACTIVE */}
             <button
               className="
-              w-full
-              flex
-              items-center
-              gap-4
-              bg-[#132447]
-              border
-              border-[#335CFF]/30
-              text-white
-              px-4
-              py-4
-              rounded-2xl
-              shadow-[0_0_25px_rgba(76,111,255,0.15)]
-            "
+    w-full
+    flex
+    items-center
+    gap-4
+    bg-[#132447]
+    border
+    border-[#335CFF]/30
+    text-white
+    px-4
+    py-4
+    rounded-2xl
+    shadow-[0_0_25px_rgba(76,111,255,0.15)]
+  "
             >
               <div
                 className="
-                w-11
-                h-11
-                rounded-xl
-                bg-[#2563EB]/20
-                border
-                border-[#3B82F6]/40
-                flex
-                items-center
-                justify-center
-              "
+      w-11
+      h-11
+      rounded-xl
+      bg-[#2563EB]/20
+      border
+      border-[#3B82F6]/40
+      flex
+      items-center
+      justify-center
+    "
               >
                 <FileText className="w-5 h-5 text-[#60A5FA]" />
               </div>
+
               <div className="text-left">
                 <p className="font-medium">Документи</p>
               </div>
