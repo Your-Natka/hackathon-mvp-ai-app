@@ -21,7 +21,7 @@ export default function DocumentsPage() {
       status: "Опрацьовано",
     },
     {
-      name: "Правила охорони праці в будівництві.pdf",
+      name: "Правила охорони праці в будівництві.pdf\u00A0\u00A0",
       type: "Регламент",
       date: "19 трав. 2024",
       size: "856 KB",
@@ -54,57 +54,99 @@ export default function DocumentsPage() {
     <main className="min-h-screen bg-[#EEF3FA]">
       <div className="max-w-[1440px] mx-auto flex min-h-screen">
         {/* LEFT SIDEBAR */}
-        <aside className="w-[280px] bg-[#07152f] text-white flex flex-col px-5 py-6">
+        <aside className="w-[310px] bg-[#07152F] text-white flex flex-col border-r border-white/5">
           {/* LOGO */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-              <Link href="/" className="flex items-center gap-4">
-                <Image
-                  src="/images/image_logo_white.png"
-                  alt="Sentinel AI"
-                  width={48}
-                  height={48}
-                  className="object-contain"
-                />
-              </Link>
-            </div>
+          <div className="px-6 py-6 border-b border-white/5">
+            <Link href="/" className="flex items-center gap-4">
+              <Image
+                src="/images/image_logo_white.png"
+                alt="Sentinel AI"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
 
-            <div>
-              <h1 className="text-xl font-bold tracking-wide">SENTINEL AI</h1>
+              <div>
+                <h1 className="text-lg font-bold tracking-wide">SENTINEL AI</h1>
 
-              <p className="text-xs text-slate-300">ELECTRONORMS AI</p>
-            </div>
+                <p className="text-xs text-[#94A3B8]">ELECTRONORMS AI</p>
+              </div>
+            </Link>
           </div>
 
           {/* NEW CHAT BUTTON */}
-          <button className="w-full h-14 rounded-2xl bg-gradient-to-r from-[#4f6bff] to-[#6c63ff] flex items-center justify-center gap-2 text-base font-medium shadow-lg hover:opacity-95 transition mb-8">
-            <Plus size={20} />
-            Новий чат
-          </button>
+          <div className="px-4 pt-5">
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              justify-center
+              gap-3
+              bg-gradient-to-r
+              from-[#4C6FFF]
+              to-[#7356FF]
+              rounded-2xl
+              py-4
+              font-medium
+              shadow-xl
+              hover:scale-[1.01]
+              transition
+            "
+            >
+              <Plus className="w-5 h-5" />
+              Новий чат
+            </button>
+          </div>
 
           {/* MENU */}
-          <div className="flex flex-col gap-3">
+          <div className="px-4 py-5 space-y-2">
             {/* ШІ ЧАТ */}
-            <button className="flex items-center gap-4 h-14 px-4 rounded-xl hover:bg-white/5 text-white transition">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <MessageSquare size={20} />
-              </div>
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
+            >
+              <MessageSquare size={20} />
 
-              <span className="font-medium text-[15px]">ШІ Чат</span>
+              <span>ШІ Чат</span>
             </button>
 
             {/* DASHBOARD */}
-            <button className="flex items-center gap-4 h-14 px-4 rounded-xl hover:bg-white/5 text-white transition">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <LayoutDashboard size={20} />
-              </div>
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
+            >
+              <LayoutDashboard className="w-5 h-5" />
 
-              <span className="font-medium text-[15px]">Інфо панель</span>
+              <span>Інфо панель</span>
             </button>
 
             {/* DOCUMENTS ACTIVE */}
             <button
-              className="w-full
+              className="
+              w-full
               flex
               items-center
               gap-4
@@ -115,34 +157,72 @@ export default function DocumentsPage() {
               px-4
               py-4
               rounded-2xl
-              shadow-[0_0_25px_rgba(76,111,255,0.15)]"
+              shadow-[0_0_25px_rgba(76,111,255,0.15)]
+            "
             >
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                <FileText size={20} />
+              <div
+                className="
+                w-11
+                h-11
+                rounded-xl
+                bg-[#2563EB]/20
+                border
+                border-[#3B82F6]/40
+                flex
+                items-center
+                justify-center
+              "
+              >
+                <FileText className="w-5 h-5 text-[#60A5FA]" />
               </div>
-
-              <span className="font-medium text-[15px]">Документи</span>
+              <div className="text-left">
+                <p className="font-medium">Документи</p>
+              </div>
             </button>
 
             {/* DBN */}
-            <button className="flex items-center gap-4 h-14 px-4 rounded-xl hover:bg-white/5 text-white transition">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <ShieldCheck size={20} />
-              </div>
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
+            >
+              <LayoutDashboard className="w-5 h-5" />
 
-              <span className="font-medium text-[15px]">ДБН Перевірити</span>
+              <span>ДБН Перевірити</span>
+            </button>
+
+            {/* DBN */}
+            {/* SETTINGS */}
+            <button
+              className="
+                w-full
+                flex
+                items-center
+                gap-4
+                px-4
+                py-4
+                rounded-2xl
+                text-[#A8B6D3]
+                hover:bg-white/5
+                hover:text-white
+                transition
+              "
+            >
+              <Settings size={20} />
+
+              <span>Налаштування</span>
             </button>
           </div>
-          {/* DBN */}
-          {/* SETTINGS */}
-          <button className="flex items-center gap-4 h-14 px-4 rounded-xl hover:bg-white/5 text-white transition">
-            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-              <Settings size={20} />
-            </div>
-
-            <span className="font-medium text-[15px]">Налаштування</span>
-          </button>
-
           {/* SPACER */}
           <div className="flex-1" />
 
@@ -152,18 +232,18 @@ export default function DocumentsPage() {
             <Link
               href="/"
               className="
-              w-full
-              flex
-              items-center
-              justify-center
-              rounded-2xl
-              bg-white/[0.05]
-              hover:bg-white/[0.08]
-              py-3
-              text-sm
-              text-[#D8E1F5]
-              transition
-            "
+                w-full
+                flex
+                items-center
+                justify-center
+                rounded-2xl
+                bg-white/[0.05]
+                hover:bg-white/[0.08]
+                py-3
+                text-sm
+                text-[#D8E1F5]
+                transition
+              "
             >
               Вийти
             </Link>

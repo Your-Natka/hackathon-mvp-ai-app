@@ -193,8 +193,6 @@ export default function DemoPage() {
 
               <div className="text-left">
                 <p className="font-medium">ШІ Чат</p>
-
-                <p className="text-xs text-[#8EA0C5]">ШІ асистент</p>
               </div>
             </button>
 
