@@ -109,7 +109,7 @@ export default function HomePage() {
       >
         {/* CONTENT */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8">
-          <div className="max-w-[960px] min-h-[78vh] flex flex-col justify-center">
+          <div className=" flex flex-col justify-center">
             {/* TITLE */}
             <h2
               className="
