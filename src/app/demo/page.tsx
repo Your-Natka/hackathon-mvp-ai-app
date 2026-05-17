@@ -108,32 +108,33 @@ export default function DemoPage() {
   }
 
   return (
-    <main className="h-screen flex overflow-hidden bg-[#EEF3FA]">
-      {/* SIDEBAR */}
-      <aside className="w-[310px] bg-[#07152F] text-white flex flex-col border-r border-white/5">
-        {/* LOGO */}
-        <div className="px-6 py-6 border-b border-white/5">
-          <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/images/image_logo_white.png"
-              alt="Sentinel AI"
-              width={48}
-              height={48}
-              className="object-contain"
-            />
+    <main className="min-h-screen bg-[#EEF3FA]">
+      <div className="max-w-[1440px] mx-auto flex min-h-screen">
+        {/* SIDEBAR */}
+        <aside className="w-[310px] bg-[#07152F] text-white flex flex-col border-r border-white/5">
+          {/* LOGO */}
+          <div className="px-6 py-6 border-b border-white/5">
+            <Link href="/" className="flex items-center gap-4">
+              <Image
+                src="/images/image_logo_white.png"
+                alt="Sentinel AI"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
 
-            <div>
-              <h1 className="text-lg font-bold tracking-wide">SENTINEL AI</h1>
+              <div>
+                <h1 className="text-lg font-bold tracking-wide">SENTINEL AI</h1>
 
-              <p className="text-xs text-[#94A3B8]">ELECTRONORMS AI</p>
-            </div>
-          </Link>
-        </div>
+                <p className="text-xs text-[#94A3B8]">ELECTRONORMS AI</p>
+              </div>
+            </Link>
+          </div>
 
-        {/* NEW CHAT */}
-        <div className="px-4 pt-5">
-          <button
-            className="
+          {/* NEW CHAT */}
+          <div className="px-4 pt-5">
+            <button
+              className="
               w-full
               flex
               items-center
@@ -149,17 +150,17 @@ export default function DemoPage() {
               hover:scale-[1.01]
               transition
             "
-          >
-            <Plus className="w-5 h-5" />
-            Новий чат
-          </button>
-        </div>
+            >
+              <Plus className="w-5 h-5" />
+              Новий чат
+            </button>
+          </div>
 
-        {/* MENU */}
-        <div className="px-4 py-5 space-y-2">
-          {/* ACTIVE */}
-          <button
-            className="
+          {/* MENU */}
+          <div className="px-4 py-5 space-y-2">
+            {/* ACTIVE */}
+            <button
+              className="
               w-full
               flex
               items-center
@@ -173,9 +174,9 @@ export default function DemoPage() {
               rounded-2xl
               shadow-[0_0_25px_rgba(76,111,255,0.15)]
             "
-          >
-            <div
-              className="
+            >
+              <div
+                className="
                 w-11
                 h-11
                 rounded-xl
@@ -186,20 +187,41 @@ export default function DemoPage() {
                 items-center
                 justify-center
               "
+              >
+                <MessageSquare className="w-5 h-5 text-[#60A5FA]" />
+              </div>
+
+              <div className="text-left">
+                <p className="font-medium">ШІ Чат</p>
+
+                <p className="text-xs text-[#8EA0C5]">ШІ асистент</p>
+              </div>
+            </button>
+
+            {/* ITEM */}
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
             >
-              <MessageSquare className="w-5 h-5 text-[#60A5FA]" />
-            </div>
+              <LayoutDashboard className="w-5 h-5" />
 
-            <div className="text-left">
-              <p className="font-medium">ШІ Чат</p>
+              <span>Інфо панель</span>
+            </button>
 
-              <p className="text-xs text-[#8EA0C5]">ШІ асистент</p>
-            </div>
-          </button>
-
-          {/* ITEM */}
-          <button
-            className="
+            <Link
+              href="/documents"
+              className="
               w-full
               flex
               items-center
@@ -212,106 +234,85 @@ export default function DemoPage() {
               hover:text-white
               transition
             "
-          >
-            <LayoutDashboard className="w-5 h-5" />
+            >
+              <FileText className="w-5 h-5" />
 
-            <span>Інфо панель</span>
-          </button>
-
-          <Link
-            href="/documents"
-            className="
-              w-full
-              flex
-              items-center
-              gap-4
-              px-4
-              py-4
-              rounded-2xl
-              text-[#A8B6D3]
-              hover:bg-white/5
-              hover:text-white
-              transition
-            "
-          >
-            <FileText className="w-5 h-5" />
-
-            <span>Документи</span>
-          </Link>
-
-          <button
-            className="
-              w-full
-              flex
-              items-center
-              gap-4
-              px-4
-              py-4
-              rounded-2xl
-              text-[#A8B6D3]
-              hover:bg-white/5
-              hover:text-white
-              transition
-            "
-          >
-            <ShieldCheck className="w-5 h-5" />
-
-            <span>ДБН Перевірити</span>
-          </button>
-
-          <button
-            className="
-              w-full
-              flex
-              items-center
-              gap-4
-              px-4
-              py-4
-              rounded-2xl
-              text-[#A8B6D3]
-              hover:bg-white/5
-              hover:text-white
-              transition
-            "
-          >
-            <Settings className="w-5 h-5" />
-
-            <span>Налаштування</span>
-          </button>
-        </div>
-
-        {/* HISTORY */}
-        <div className="px-4 mt-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Clock3 className="w-4 h-4 text-[#94A3B8]" />
-
-              <h3 className="text-xs uppercase tracking-[0.18em] text-[#94A3B8]">
-                Історія чатів
-              </h3>
-            </div>
+              <span>Документи</span>
+            </Link>
 
             <button
-              onClick={clearChat}
               className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
+            >
+              <ShieldCheck className="w-5 h-5" />
+
+              <span>ДБН Перевірити</span>
+            </button>
+
+            <button
+              className="
+              w-full
+              flex
+              items-center
+              gap-4
+              px-4
+              py-4
+              rounded-2xl
+              text-[#A8B6D3]
+              hover:bg-white/5
+              hover:text-white
+              transition
+            "
+            >
+              <Settings className="w-5 h-5" />
+
+              <span>Налаштування</span>
+            </button>
+          </div>
+
+          {/* HISTORY */}
+          <div className="px-4 mt-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Clock3 className="w-4 h-4 text-[#94A3B8]" />
+
+                <h3 className="text-xs uppercase tracking-[0.18em] text-[#94A3B8]">
+                  Історія чатів
+                </h3>
+              </div>
+
+              <button
+                onClick={clearChat}
+                className="
                 text-[#94A3B8]
                 hover:text-white
                 transition
               "
-            >
-              <Trash2 className="w-4 h-4" />
-            </button>
-          </div>
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
 
-          <div className="space-y-2">
-            {[
-              "Робота під напругою",
-              "Пожежна безпека",
-              "Заземлення PE/PEN",
-            ].map((item, i) => (
-              <button
-                key={i}
-                className="
+            <div className="space-y-2">
+              {[
+                "Робота під напругою",
+                "Пожежна безпека",
+                "Заземлення PE/PEN",
+              ].map((item, i) => (
+                <button
+                  key={i}
+                  className="
                   w-full
                   text-left
                   bg-white/[0.03]
@@ -325,20 +326,20 @@ export default function DemoPage() {
                   text-[#D8E1F5]
                   transition
                 "
-              >
-                {item}
-              </button>
-            ))}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="flex-1" />
+          <div className="flex-1" />
 
-        {/* FOOTER */}
-        <div className="p-4 border-t border-white/5">
-          <Link
-            href="/"
-            className="
+          {/* FOOTER */}
+          <div className="p-4 border-t border-white/5">
+            <Link
+              href="/"
+              className="
               w-full
               flex
               items-center
@@ -351,27 +352,27 @@ export default function DemoPage() {
               text-[#D8E1F5]
               transition
             "
-          >
-            Вийти
-          </Link>
-        </div>
-      </aside>
-
-      {/* MAIN */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* HEADER */}
-        <header className="h-20 bg-white border-b border-[#E7ECF5] px-8 flex items-center justify-between">
-          <div>
-            <h2 className="text-[26px] font-bold text-[#0B1736]">
-              ШІ Асистент з Електричних Норм
-            </h2>
+            >
+              Вийти
+            </Link>
           </div>
-          {/* RIGHT PANEL (3 IN 1) */}
-          <div className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E7ECF5] px-4 py-2 rounded-2xl">
-            {/* 1 - KNOWLEDGE BASE */}
-            <Link
-              href="/upload"
-              className="
+        </aside>
+
+        {/* MAIN */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* HEADER */}
+          <header className="h-20 bg-white border-b border-[#E7ECF5] px-8 flex items-center justify-between">
+            <div>
+              <h2 className="text-[26px] font-bold text-[#0B1736]">
+                ШІ Асистент з Електричних Норм
+              </h2>
+            </div>
+            {/* RIGHT PANEL (3 IN 1) */}
+            <div className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E7ECF5] px-4 py-2 rounded-2xl">
+              {/* 1 - KNOWLEDGE BASE */}
+              <Link
+                href="/upload"
+                className="
                 flex
                 items-center
                 gap-2
@@ -384,18 +385,18 @@ export default function DemoPage() {
                 hover:bg-[#F8FAFC]
                 transition
               "
-            >
-              <Database className="w-4 h-4" />
+              >
+                <Database className="w-4 h-4" />
 
-              <span className="font-medium">База знань</span>
-            </Link>
+                <span className="font-medium">База знань</span>
+              </Link>
 
-            <div className="w-px h-6 bg-[#E7ECF5]" />
+              <div className="w-px h-6 bg-[#E7ECF5]" />
 
-            {/* 2 - CLEAR CHAT */}
-            <button
-              onClick={clearChat}
-              className="
+              {/* 2 - CLEAR CHAT */}
+              <button
+                onClick={clearChat}
+                className="
                   flex
                   items-center
                   gap-2
@@ -408,36 +409,36 @@ export default function DemoPage() {
                   hover:bg-[#F8FAFC]
                   transition
                 "
-            >
-              <Trash2 className="w-4 h-4" />
-              Очистити чат
-            </button>
+              >
+                <Trash2 className="w-4 h-4" />
+                Очистити чат
+              </button>
 
-            {/* 3 - ONLINE STATUS */}
-            <div className="flex items-center gap-2 px-3 py-2">
-              <div className="relative flex items-center justify-center">
-                <CircleDot className="w-4 h-4 text-green-500" />
+              {/* 3 - ONLINE STATUS */}
+              <div className="flex items-center gap-2 px-3 py-2">
+                <div className="relative flex items-center justify-center">
+                  <CircleDot className="w-4 h-4 text-green-500" />
 
-                <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-500 opacity-75 animate-ping" />
+                  <span className="absolute inline-flex h-3 w-3 rounded-full bg-green-500 opacity-75 animate-ping" />
+                </div>
+
+                <span className="text-sm font-medium text-[#475467]">
+                  ШІ на зв'язку
+                </span>
               </div>
-
-              <span className="text-sm font-medium text-[#475467]">
-                ШІ на зв'язку
-              </span>
             </div>
-          </div>
-        </header>
+          </header>
 
-        {/* CHAT + SOURCES LAYOUT */}
-        <section className="flex h-[calc(100vh-80px)] overflow-hidden">
-          {/* LEFT COLUMN - CHAT */}
-          <div className="flex flex-col flex-1 bg-[#F8FAFC]">
-            {/* CHAT BODY */}
-            <div className="flex-1 overflow-y-auto px-8 py-8 space-y-6">
-              {messages.length === 0 && !loading && (
-                <div className="h-full flex flex-col items-center justify-center text-center">
-                  <div
-                    className="
+          {/* CHAT + SOURCES LAYOUT */}
+          <section className="flex h-[calc(100vh-80px)] overflow-hidden">
+            {/* LEFT COLUMN - CHAT */}
+            <div className="flex flex-col flex-1 bg-[#F8FAFC]">
+              {/* CHAT BODY */}
+              <div className="flex-1 overflow-y-auto px-8 py-8 space-y-6">
+                {messages.length === 0 && !loading && (
+                  <div className="h-full flex flex-col items-center justify-center text-center">
+                    <div
+                      className="
                       w-24
                       h-24
                       rounded-[28px]
@@ -450,36 +451,36 @@ export default function DemoPage() {
                       shadow-[0_20px_60px_rgba(76,111,255,0.35)]
                       mb-8
                     "
-                  >
-                    <MessageSquare className="w-11 h-11 text-white " />
+                    >
+                      <MessageSquare className="w-11 h-11 text-white " />
+                    </div>
+
+                    <h3 className="text-4xl font-bold text-[#0B1736]">
+                      Sentinel ШІ помічник
+                    </h3>
+
+                    <p className="mt-5 max-w-2xl text-[#667085] leading-relaxed text-lg">
+                      Запитайте про ПУЕ, ДБН, групи допуску, електробезпеку,
+                      заземлення або нормативи.
+                    </p>
                   </div>
+                )}
 
-                  <h3 className="text-4xl font-bold text-[#0B1736]">
-                    Sentinel ШІ помічник
-                  </h3>
+                {/* MESSAGES */}
+                {messages.map((message, index) => {
+                  const isUser = message.role === "user";
 
-                  <p className="mt-5 max-w-2xl text-[#667085] leading-relaxed text-lg">
-                    Запитайте про ПУЕ, ДБН, групи допуску, електробезпеку,
-                    заземлення або нормативи.
-                  </p>
-                </div>
-              )}
+                  return (
+                    <div
+                      key={index}
+                      className={`flex ${isUser ? "justify-end" : "justify-start"}`}
+                    >
+                      <div className="flex items-start gap-4 max-w-[900px]">
+                        {/* AVATAR */}
 
-              {/* MESSAGES */}
-              {messages.map((message, index) => {
-                const isUser = message.role === "user";
-
-                return (
-                  <div
-                    key={index}
-                    className={`flex ${isUser ? "justify-end" : "justify-start"}`}
-                  >
-                    <div className="flex items-start gap-4 max-w-[900px]">
-                      {/* AVATAR */}
-
-                      {/* MESSAGE BUBBLE */}
-                      <div
-                        className={`
+                        {/* MESSAGE BUBBLE */}
+                        <div
+                          className={`
                           rounded-[28px]
                           px-6
                           py-5
@@ -491,53 +492,53 @@ export default function DemoPage() {
                               : "bg-white border border-[#E7ECF5]"
                           }
                         `}
-                      >
-                        {/* AI HEADER */}
-                        {!isUser && (
-                          <div className="mb-4 flex items-center gap-3 ">
-                            <div className="flex items-center gap-3">
-                              {!isUser && (
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center shadow-lg">
-                                  <MessageSquare className="w-5 h-5 text-white" />
-                                </div>
-                              )}
-
-                              {isUser && (
-                                <div className="w-12 h-12 rounded-2xl bg-[#0B1736] text-white flex items-center justify-center font-semibold">
-                                  U
-                                </div>
-                              )}
-                            </div>
-                            <div className="mb-4 ">
-                              <h4 className="font-semibold text-[#0B1736]">
-                                ШI Відповідь
-                              </h4>
-                              <p className="text-xs text-[#98A2B3]">
-                                Knowledge Engine
-                              </p>
-                            </div>
-                          </div>
-                        )}
-
-                        {/* TEXT */}
-                        <div
-                          className={`whitespace-pre-wrap leading-relaxed ${
-                            isUser ? "text-white" : "text-[#475467]"
-                          }`}
                         >
-                          {message.content}
+                          {/* AI HEADER */}
+                          {!isUser && (
+                            <div className="mb-4 flex items-center gap-3 ">
+                              <div className="flex items-center gap-3">
+                                {!isUser && (
+                                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-[#4C6FFF] to-[#7356FF] flex items-center justify-center shadow-lg">
+                                    <MessageSquare className="w-5 h-5 text-white" />
+                                  </div>
+                                )}
+
+                                {isUser && (
+                                  <div className="w-12 h-12 rounded-2xl bg-[#0B1736] text-white flex items-center justify-center font-semibold">
+                                    U
+                                  </div>
+                                )}
+                              </div>
+                              <div className="mb-4 ">
+                                <h4 className="font-semibold text-[#0B1736]">
+                                  ШI Відповідь
+                                </h4>
+                                <p className="text-xs text-[#98A2B3]">
+                                  Knowledge Engine
+                                </p>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* TEXT */}
+                          <div
+                            className={`whitespace-pre-wrap leading-relaxed ${
+                              isUser ? "text-white" : "text-[#475467]"
+                            }`}
+                          >
+                            {message.content}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
 
-              {/* LOADING */}
-              {loading && (
-                <div className="flex items-center gap-4">
-                  <div
-                    className="
+                {/* LOADING */}
+                {loading && (
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="
               w-12
               h-12
               rounded-2xl
@@ -548,27 +549,27 @@ export default function DemoPage() {
               items-center
               justify-center
             "
-                  >
-                    <MessageSquare className="w-5 h-5 text-white" />
-                  </div>
+                    >
+                      <MessageSquare className="w-5 h-5 text-white" />
+                    </div>
 
-                  <div className="bg-white border border-[#E7ECF5] rounded-[28px] px-6 py-5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-[#4C6FFF] animate-bounce" />
-                      <div className="w-2 h-2 rounded-full bg-[#7356FF] animate-bounce delay-100" />
-                      <div className="w-2 h-2 rounded-full bg-[#4C6FFF] animate-bounce delay-200" />
+                    <div className="bg-white border border-[#E7ECF5] rounded-[28px] px-6 py-5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-[#4C6FFF] animate-bounce" />
+                        <div className="w-2 h-2 rounded-full bg-[#7356FF] animate-bounce delay-100" />
+                        <div className="w-2 h-2 rounded-full bg-[#4C6FFF] animate-bounce delay-200" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <div ref={messagesEndRef} />
-            </div>
+                <div ref={messagesEndRef} />
+              </div>
 
-            {/* INPUT - FIXED BOTTOM */}
-            <div className="bg-white border-t border-[#E7ECF5] px-8 py-5 shrink-0">
-              <div
-                className="
+              {/* INPUT - FIXED BOTTOM */}
+              <div className="bg-white border-t border-[#E7ECF5] px-8 py-5 shrink-0">
+                <div
+                  className="
           max-w-4xl
           mx-auto
           bg-[#F8FAFC]
@@ -581,10 +582,10 @@ export default function DemoPage() {
           items-center
           gap-4
         "
-              >
-                {/* ATTACH */}
-                <button
-                  className="
+                >
+                  {/* ATTACH */}
+                  <button
+                    className="
             w-11
             h-11
             rounded-xl
@@ -599,17 +600,17 @@ export default function DemoPage() {
             transition
             shrink-0
           "
-                >
-                  <Paperclip className="w-5 h-5" />
-                </button>
+                  >
+                    <Paperclip className="w-5 h-5" />
+                  </button>
 
-                {/* INPUT */}
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  type="text"
-                  placeholder="Запитайте про DBN, ПУЕ або електробезпеку..."
-                  className="
+                  {/* INPUT */}
+                  <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    type="text"
+                    placeholder="Запитайте про DBN, ПУЕ або електробезпеку..."
+                    className="
             flex-1
             bg-transparent
             outline-none
@@ -617,18 +618,18 @@ export default function DemoPage() {
             placeholder:text-[#98A2B3]
             text-[15px]
           "
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      askAI();
-                    }
-                  }}
-                />
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        askAI();
+                      }
+                    }}
+                  />
 
-                {/* SEND */}
-                <button
-                  onClick={askAI}
-                  disabled={loading}
-                  className="
+                  {/* SEND */}
+                  <button
+                    onClick={askAI}
+                    disabled={loading}
+                    className="
             w-12
             h-12
             rounded-2xl
@@ -645,77 +646,77 @@ export default function DemoPage() {
             disabled:opacity-50
             shrink-0
           "
-                >
-                  <Send className="w-5 h-5" />
-                </button>
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* RIGHT COLUMN - SOURCES */}
-          <aside className="w-[360px] bg-white border-l border-[#E7ECF5] overflow-y-auto p-5 shrink-0">
-            {/* HEADER */}
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-[#0B1736]">Джерела</h3>
+            {/* RIGHT COLUMN - SOURCES */}
+            <aside className="w-[360px] bg-white border-l border-[#E7ECF5] overflow-y-auto p-5 shrink-0">
+              {/* HEADER */}
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-[#0B1736]">Джерела</h3>
 
-              <p className="text-sm text-[#667085] mt-1">
-                ШІ використовує нормативну документацію
-              </p>
-            </div>
-
-            {/* EMPTY STATE */}
-            {sources.length === 0 ? (
-              <div className="rounded-3xl border border-[#E7ECF5] bg-[#F8FAFC] p-5">
-                <p className="text-sm text-[#98A2B3] leading-relaxed">
-                  Тут з’являться релевантні фрагменти документів.
+                <p className="text-sm text-[#667085] mt-1">
+                  ШІ використовує нормативну документацію
                 </p>
               </div>
-            ) : (
-              <div className="space-y-4">
-                {sources.map((source, index) => (
-                  <div
-                    key={index}
-                    className="
+
+              {/* EMPTY STATE */}
+              {sources.length === 0 ? (
+                <div className="rounded-3xl border border-[#E7ECF5] bg-[#F8FAFC] p-5">
+                  <p className="text-sm text-[#98A2B3] leading-relaxed">
+                    Тут з’являться релевантні фрагменти документів.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {sources.map((source, index) => (
+                    <div
+                      key={index}
+                      className="
             bg-[#F8FAFC]
             rounded-3xl
             p-5
             border
             border-[#E7ECF5]
           "
-                  >
-                    {/* TOP ROW: ICON + DOC NAME */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-white border border-[#E7ECF5] flex items-center justify-center">
-                        <FileText className="w-4 h-4 text-[#4C6FFF]" />
+                    >
+                      {/* TOP ROW: ICON + DOC NAME */}
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-9 h-9 rounded-xl bg-white border border-[#E7ECF5] flex items-center justify-center">
+                          <FileText className="w-4 h-4 text-[#4C6FFF]" />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-[#0B1736]">
+                            {source.title || "Нормативний документ"}
+                          </span>
+
+                          <span className="text-xs text-[#98A2B3]">
+                            PDF документ
+                          </span>
+                        </div>
                       </div>
 
-                      <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-[#0B1736]">
-                          {source.title || "Нормативний документ"}
-                        </span>
+                      {/* CONTENT */}
+                      <p className="text-sm text-[#475467] leading-relaxed mb-4">
+                        {source.content}
+                      </p>
 
-                        <span className="text-xs text-[#98A2B3]">
-                          PDF документ
-                        </span>
-                      </div>
-                    </div>
+                      {/* FOOTER */}
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs text-[#667085]">
+                          <span className="font-medium">Параграф:</span>{" "}
+                          {source.point || "—"} ·{" "}
+                          <span className="font-medium">Стор.:</span>{" "}
+                          {source.page || "—"}
+                        </div>
 
-                    {/* CONTENT */}
-                    <p className="text-sm text-[#475467] leading-relaxed mb-4">
-                      {source.content}
-                    </p>
-
-                    {/* FOOTER */}
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs text-[#667085]">
-                        <span className="font-medium">Параграф:</span>{" "}
-                        {source.point || "—"} ·{" "}
-                        <span className="font-medium">Стор.:</span>{" "}
-                        {source.page || "—"}
-                      </div>
-
-                      <span
-                        className="
+                        <span
+                          className="
                           text-xs
                           font-semibold
                           text-[#067647]
@@ -726,16 +727,17 @@ export default function DemoPage() {
                           py-1.5
                           rounded-full
                         "
-                      >
-                        {source.relevance || "відповідність"}
-                      </span>
+                        >
+                          {source.relevance || "відповідність"}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </aside>
-        </section>
+                  ))}
+                </div>
+              )}
+            </aside>
+          </section>
+        </div>
       </div>
     </main>
   );

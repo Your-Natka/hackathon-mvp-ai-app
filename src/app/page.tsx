@@ -109,11 +109,11 @@ export default function HomePage() {
       >
         {/* CONTENT */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8">
-          <div className="max-w-[860px] min-h-[78vh] flex flex-col justify-center">
+          <div className="max-w-[960px] min-h-[78vh] flex flex-col justify-center">
             {/* TITLE */}
             <h2
               className="
-          text-[38px]
+          text-[36px]
           md:text-[56px]
           xl:text-[68px]
           leading-[1.02]
@@ -122,11 +122,8 @@ export default function HomePage() {
           text-white/90
         "
             >
-              Помічник у проєктуванні,
-              <br />
-              будівництві та обслуговуванні
-              <br />
-              електричних мереж
+              Помічник у проєктуванні, будівництві та обслуговуванні електричних
+              мереж
             </h2>
 
             {/* DESCRIPTION */}

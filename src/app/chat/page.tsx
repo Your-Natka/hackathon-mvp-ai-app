@@ -25,7 +25,7 @@ export default function ChatPage() {
       const reader = res.body?.getReader();
 
       if (!reader) {
-        throw new Error("No response stream");
+        throw new Error("Потік відповідей відсутній");
       }
 
       const decoder = new TextDecoder();
@@ -43,7 +43,7 @@ export default function ChatPage() {
       }
     } catch (error) {
       console.error("CHAT ERROR:", error);
-      setResponse("Error while fetching response");
+      setResponse("Помилка під час отримання відповіді");
     } finally {
       setLoading(false);
     }
