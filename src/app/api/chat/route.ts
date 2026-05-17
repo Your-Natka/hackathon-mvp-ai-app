@@ -37,6 +37,12 @@ export async function POST(req: Request) {
       });
 
       console.log("RPC ERROR:", error);
+      if (error) {
+        return Response.json({
+          answer: JSON.stringify(error),
+          sources: [],
+        });
+      }
       console.log("DOCS COUNT:", data?.length);
 
       if (!error) {
