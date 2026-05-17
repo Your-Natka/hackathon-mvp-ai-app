@@ -2,6 +2,7 @@ import { openai } from "@/lib/openai";
 import { supabaseServer } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 import { SYSTEM_PROMPT } from "@/utils/prompts";
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
