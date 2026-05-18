@@ -78,7 +78,7 @@ export async function POST(req: Request) {
         .filter((r): r is DocumentRow => r !== null);
 
       if (cleanRows.length) {
-        const { error } = await supabaseServer
+        const { error } = await supabaseService
           .from("documents")
           .insert(cleanRows);
 

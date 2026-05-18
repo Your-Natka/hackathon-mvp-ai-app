@@ -3,10 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, CheckCircle2 } from "lucide-react";
-import { extractText } from "@/lib/extractText";
-import { splitText } from "@/lib/chunk";
-import { createEmbedding } from "@/lib/embeddings";
-import { supabaseServer } from "@/lib/supabase-server";
 
 export default function UploadPage() {
   const router = useRouter();
