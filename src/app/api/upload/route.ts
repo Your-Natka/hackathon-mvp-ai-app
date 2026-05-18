@@ -2,7 +2,7 @@ import { extractText } from "@/lib/extractText";
 import { parseDOCX } from "@/lib/docx";
 import { splitText } from "@/lib/chunk";
 import { createEmbedding } from "@/lib/embeddings";
-import { supabaseServer } from "@/lib/supabase-server";
+import { supabaseService } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     console.log("TOTAL CHUNKS:", chunks.length);
 
     const batchSize = 5;
-    await supabaseServer.from("documents").delete().eq("filename", file.name);
+    await supabaseService.from("documents").delete().eq("filename", file.name);
 
     for (let i = 0; i < chunks.length; i += batchSize) {
       const batch = chunks.slice(i, i + batchSize);

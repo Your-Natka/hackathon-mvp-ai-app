@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/lib/supabase-server";
+import { supabaseService } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 
 export async function searchDocs(query: string) {
@@ -9,7 +9,7 @@ export async function searchDocs(query: string) {
     return [];
   }
 
-  const { data, error } = await supabaseServer.rpc("match_documents", {
+  const { data, error } = await supabaseService.rpc("match_documents", {
     query_embedding: embedding,
     match_threshold: 0.75,
     match_count: 5,
