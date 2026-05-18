@@ -1,5 +1,5 @@
 import { openai } from "@/lib/openai";
-import { supabaseServer } from "@/lib/supabase-server";
+import { supabaseService } from "@/lib/supabase-server";
 import { createEmbedding } from "@/lib/embeddings";
 import { SYSTEM_PROMPT } from "@/utils/prompts";
 export const runtime = "nodejs";
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     // 2. SUPABASE VECTOR SEARCH
     // ======================
     if (embedding && embedding.length > 0) {
-      const { data, error } = await supabaseServer.rpc("match_documents", {
+      const { data, error } = await supabaseService.rpc("match_documents", {
         query_embedding: embedding,
         match_threshold: 0.4,
         match_count: 5,
