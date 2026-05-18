@@ -9,7 +9,11 @@ export const runtime = "nodejs";
 type DocumentRow = {
   content: string;
   embedding: number[];
+
   filename: string;
+  page: number;
+  paragraph: number;
+  chunk_index: number;
 };
 
 export async function POST(req: Request) {
@@ -17,11 +21,15 @@ export async function POST(req: Request) {
     console.log("UPLOAD STARTED");
 
     const formData = await req.formData();
+
     const file = formData.get("file");
 
     if (!(file instanceof File)) {
       return Response.json(
-        { success: false, error: "No file uploaded" },
+        {
+          success: false,
+          error: "No file uploaded",
+        },
         { status: 400 },
       );
     }
@@ -40,7 +48,10 @@ export async function POST(req: Request) {
 
     if (text.length < 20) {
       return Response.json(
-        { success: false, error: "Document text is empty" },
+        {
+          success: false,
+          error: "Document text is empty",
+        },
         { status: 400 },
       );
     }
@@ -49,27 +60,36 @@ export async function POST(req: Request) {
 
     console.log("TOTAL CHUNKS:", chunks.length);
 
-    const batchSize = 5;
     await supabaseService.from("documents").delete().eq("filename", file.name);
+
+    const batchSize = 5;
 
     for (let i = 0; i < chunks.length; i += batchSize) {
       const batch = chunks.slice(i, i + batchSize);
 
       const rows = await Promise.allSettled(
-        batch.map(async (chunk): Promise<DocumentRow | null> => {
-          const embedding = await createEmbedding(chunk);
+        batch.map(async (chunk, index): Promise<DocumentRow | null> => {
+          const embedding = await createEmbedding(chunk.text);
 
           if (!embedding) return null;
 
           return {
-            content: chunk,
+            content: chunk.text,
+
             embedding,
+
             filename: file.name,
+
+            page: chunk.page,
+
+            paragraph: chunk.paragraph,
+
+            chunk_index: i + index,
           };
         }),
       );
 
-      const cleanRows: DocumentRow[] = rows
+      const cleanRows = rows
         .filter(
           (r): r is PromiseFulfilledResult<DocumentRow | null> =>
             r.status === "fulfilled",
